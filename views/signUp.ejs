@@ -18,11 +18,38 @@
       <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     </head>
-
+		<script>
+			function sendMessage() {
+				const form = new FormData(document.getElementById('userSubmit'));
+				// document.getElementById('loading').style.display = "block";
+				// console.log(form,'-----------------------')
+				let formBody = [];
+				for (let key of form.keys()) {
+					const encodedKey = encodeURIComponent(key);
+					const encodedValue = encodeURIComponent(form.get(key));
+					formBody.push(encodedKey + '=' + encodedValue);
+				}
+				formBody = formBody.join('&');
+        print(formBody);
+				fetch('/api/v1/users/signUp', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					body: formBody
+				})
+					.then((response) => response.json())
+					.then((data) => {
+						alert(data.message);
+						document.getElementById('submitBtn').disabled = false;
+						window.location.reload();
+					})
+			}
+		</script>
     <body class="body">
       <div class="login-page">
         <div class="form">
-          <form>
+          <form action="/api/v1/users/signUp" method="post" id="userSubmit">
             <lottie-player
               src="https://assets4.lottiefiles.com/datafiles/XRVoUu3IX4sGWtiC3MPpFnJvZNq7lVWDCa8LSqgS/profile.json"
               background="transparent"
@@ -31,34 +58,26 @@
               loop
               autoplay
             ></lottie-player>
-            <input type="text" placeholder="full name" />
-            <input type="text" placeholder="email address" />
-            <input type="text" placeholder="pick a username" />
-            <input type="password" id="password" placeholder="set a password" />
+            <input type="text" name="name" placeholder="full name" />
+            <input type="text" name="email" placeholder="email address" />
+            <input type="password" name="password" placeholder="set a password" />
+            <input type="password" id="password" name="passwordConfirm" placeholder="Confirm Password" />
+            <!-- <select id="userType" name="userType">
+              <option value="Farmer">Farmer</option>
+              <option value="Manager">Manager</option>
+            </select> -->
             <br>
             <br>
-          </form>
-
-          <form class="login-form">
-            <button type="button" onclick="window.location.href='login.html'">
-              SIGN UP
-            </button>
+            <button class="login-form" type="submit" id="submitBtn">SIGN UP</button>
           </form>
         </div>
       </div>
     </body>
     <script>
-      function show() {
-        var password = document.getElementById("password");
-        var icon = document.querySelector(".fas");
-
-        // ========== Checking type of password ===========
-        if (password.type === "password") {
-          password.type = "text";
-        } else {
-          password.type = "password";
-        }
-      }
+    document.getElementById("userSubmit").addEventListener("submit", (data) => {
+      data.preventDefault();
+      sendMessage();
+    });
     </script>
   </html>
 </html>
