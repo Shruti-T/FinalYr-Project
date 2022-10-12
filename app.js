@@ -2,6 +2,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const userRouter = require("./Router/userRoute");
+const path = require("path");
 
 const app = express();
 
@@ -11,6 +12,11 @@ if (process.env.NODE_ENV === "development") {
 }
 //serving static files
 app.use(express.static(`${__dirname}/public`));
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.set("views", path.join(__dirname, "./views"));
+app.set("view engine", "ejs");
 
 //test middleware
 app.use((req, res, next) => {
