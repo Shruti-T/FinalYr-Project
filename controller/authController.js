@@ -28,16 +28,16 @@ const creatAndSendToken = (user, statusCode, res) => {
   //remove the password from the output
   user.password = undefined;
 
-  res.render("signUp", {
-    title: "SIGN UP",
+  // res.render("signUp", {
+  //   title: "SIGN UP",
+  // });
+  res.status(statusCode).json({
+    status: "success",
+    token,
+    data: {
+      user: user,
+    },
   });
-  //   res.status(statusCode).json({
-  //     status: "success",
-  //     token,
-  //     data: {
-  //       user: user,
-  //     },
-  //   });
 };
 
 exports.signUp = catchAsync(async (req, res, next) => {
