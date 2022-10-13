@@ -10,7 +10,7 @@ const signToken = (id) => {
   });
 };
 
-const creatAndSendToken = (user, statusCode, res) => {
+const creatAndSendToken = (user, statusCode, res, renderPg) => {
   const token = signToken(user._id);
   const cookieOptions = {
     expires: new Date(
@@ -28,8 +28,8 @@ const creatAndSendToken = (user, statusCode, res) => {
   //remove the password from the output
   user.password = undefined;
 
-  // res.render("signUp", {
-  //   title: "SIGN UP",
+  // res.render(renderPg, {
+  //   title: renderPg.toUpperCase(),
   // });
   res.status(statusCode).json({
     status: "success",
@@ -41,7 +41,7 @@ const creatAndSendToken = (user, statusCode, res) => {
 };
 
 exports.signUp = catchAsync(async (req, res, next) => {
-  console.log(req.body, "----");
+  // console.log(req.body, "----");
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
@@ -50,10 +50,11 @@ exports.signUp = catchAsync(async (req, res, next) => {
     passwordConfirm: req.body.passwordConfirm,
     passwordChangedAt: req.body.passwordChangedAt,
   });
-  creatAndSendToken(newUser, 201, res);
+  creatAndSendToken(newUser, 201, res, "signUp");
 });
 
 exports.login = catchAsync(async (req, res, next) => {
+  console.log("reached");
   const { email, password } = req.body;
 
   //1) if email and password exist?
@@ -69,5 +70,5 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   //3) if everything ok, send token to client.
-  creatAndSendToken(user, 200, res);
+  creatAndSendToken(user, 200, res, "login");
 });

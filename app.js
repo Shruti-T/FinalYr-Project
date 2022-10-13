@@ -28,7 +28,7 @@ app.use("/api/v1/users", userRouter);
 // app.use("/api/v1/users", userRouter);
 
 app.all("*", (req, res, next) => {
-  console.log("route not defined yet!");
+  console.log("route not defined yet!", res.url);
   // next(new AppError(`Cant find ${req.originalUrl} on this server!`, 404));
 });
 

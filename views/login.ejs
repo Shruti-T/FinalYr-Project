@@ -5,7 +5,7 @@
   <title><%= title %></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="/css/login.css">
+  <link rel="stylesheet" href="/css/login.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>  
   <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'> 
@@ -22,6 +22,7 @@
       formBody.push(encodedKey + '=' + encodedValue);
     }
     formBody = formBody.join('&');
+    console.log('point1111',formbody)
     fetch('/api/v1/users/login', {
       method: 'POST',
       headers: {
@@ -38,26 +39,24 @@
   }
 </script>
 <body class="body">
+  <div class="login-page">
+    <div class="form">
 
-<div class="login-page">
-  <div class="form">
+      <form action="/api/v1/users/login" method="post" id="userLoginSubmit">
+        <lottie-player src="https://assets4.lottiefiles.com/datafiles/XRVoUu3IX4sGWtiC3MPpFnJvZNq7lVWDCa8LSqgS/profile.json"  background="transparent"  speed="1"  style="justify-content: center;" loop  autoplay></lottie-player>
+        <input type="email" placeholder="&#xf007;  Email"/>
+        <input type="password" id="password" placeholder="&#xf023;  Password"/>
+        <br>
+        <br>
+        <button class="login-form" type="submit" id="submitBtn">LOGIN</button>
+        <p class="message"></p>
+      </form>
 
-    <form action="/api/v1/users/login" method="post" id="userLoginSubmit">
-      <lottie-player src="https://assets4.lottiefiles.com/datafiles/XRVoUu3IX4sGWtiC3MPpFnJvZNq7lVWDCa8LSqgS/profile.json"  background="transparent"  speed="1"  style="justify-content: center;" loop  autoplay></lottie-player>
-      <input type="email" placeholder="&#xf007;  Email"/>
-      <input type="password" id="password" placeholder="&#xf023;  Password"/>
-      <br>
-      <br>
-      <button class="login-form" type="submit" id="submitBtn">LOGIN</button>
-      <p class="message"></p>
-    </form>
-
-    <form class="login-form">
-      <button type="button" onclick="window.location.href='/api/v1/users/signUp'">SIGN UP</button>
-    </form>
+      <form class="login-form">
+        <button type="button" onclick="window.location.href='/api/v1/users/signUp'">SIGN UP</button>
+      </form>
+    </div>
   </div>
-</div>
-
   <script>
     document.getElementById("userLoginSubmit").addEventListener("submit", (data) => {
       data.preventDefault();
