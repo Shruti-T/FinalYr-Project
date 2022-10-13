@@ -12,20 +12,44 @@
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 </head>
-
+<script>
+  function sendMessage() {
+    const form = new FormData(document.getElementById('userSubmit'));
+    let formBody = [];
+    for (let key of form.keys()) {
+      const encodedKey = encodeURIComponent(key);
+      const encodedValue = encodeURIComponent(form.get(key));
+      formBody.push(encodedKey + '=' + encodedValue);
+    }
+    formBody = formBody.join('&');
+    fetch('/api/v1/users/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: formBody
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        alert(data.message);
+        document.getElementById('submitBtn').disabled = false;
+        window.location.reload();
+      })
+  }
+</script>
 <body class="body">
 
 <div class="login-page">
   <div class="form">
 
-    <form>
+    <form action="/api/v1/users/login" method="post" id="userLoginSubmit">
       <lottie-player src="https://assets4.lottiefiles.com/datafiles/XRVoUu3IX4sGWtiC3MPpFnJvZNq7lVWDCa8LSqgS/profile.json"  background="transparent"  speed="1"  style="justify-content: center;" loop  autoplay></lottie-player>
-      <input type="text" placeholder="&#xf007;  username"/>
-      <input type="password" id="password" placeholder="&#xf023;  password"/>
+      <input type="email" placeholder="&#xf007;  Email"/>
+      <input type="password" id="password" placeholder="&#xf023;  Password"/>
       <!-- <i class="fas fa-eye" onclick="show()"></i>  -->
       <br>
       <br>
-      <button>LOGIN</button>
+      <button class="login-form" type="submit" id="submitBtn">LOGIN</button>
       <p class="message"></p>
     </form>
 
@@ -36,18 +60,10 @@
 </div>
 
   <script>
-    function show(){
-      var password = document.getElementById("password");
-      var icon = document.querySelector(".fas")
-
-      // ========== Checking type of password ===========
-      if(password.type === "password"){
-        password.type = "text";
-      }
-      else {
-        password.type = "password";
-      }
-    };
+    document.getElementById("userLoginSubmit").addEventListener("submit", (data) => {
+      data.preventDefault();
+      sendMessage();
+    });
   </script>
 </body>
 </html>

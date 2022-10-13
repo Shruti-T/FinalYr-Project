@@ -22,7 +22,6 @@
 			function sendMessage() {
 				const form = new FormData(document.getElementById('userSubmit'));
 				// document.getElementById('loading').style.display = "block";
-				// console.log(form,'-----------------------')
 				let formBody = [];
 				for (let key of form.keys()) {
 					const encodedKey = encodeURIComponent(key);
@@ -30,7 +29,7 @@
 					formBody.push(encodedKey + '=' + encodedValue);
 				}
 				formBody = formBody.join('&');
-        print(formBody);
+        // print(formBody);
 				fetch('/api/v1/users/signUp', {
 					method: 'POST',
 					headers: {
@@ -59,7 +58,7 @@
               autoplay
             ></lottie-player>
             <input type="text" name="name" placeholder="full name" />
-            <input type="text" name="email" placeholder="email address" />
+            <input type="email" name="email" placeholder="email address" />
             <input type="password" name="password" placeholder="set a password" />
             <input type="password" id="password" name="passwordConfirm" placeholder="Confirm Password" />
             <select id="role" name="role">
