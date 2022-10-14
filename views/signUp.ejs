@@ -16,35 +16,39 @@
         type="text/css"
       />
       <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+      <link
+        rel="stylesheet"
+        href="https://use.fontawesome.com/releases/v5.15.1/css/all.css"
+        integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp"
+        crossorigin="anonymous"
+      />
     </head>
-		<script>
-			function sendMessage() {
-				const form = new FormData(document.getElementById('userSubmit'));
-				// document.getElementById('loading').style.display = "block";
-				let formBody = [];
-				for (let key of form.keys()) {
-					const encodedKey = encodeURIComponent(key);
-					const encodedValue = encodeURIComponent(form.get(key));
-					formBody.push(encodedKey + '=' + encodedValue);
-				}
-				formBody = formBody.join('&');
-        // print(formBody);
-				fetch('/api/v1/users/signUp', {
-					method: 'POST',
-					headers: {
-						'Content-Type': 'application/x-www-form-urlencoded'
-					},
-					body: formBody
-				})
-					.then((response) => response.json())
-					.then((data) => {
-						alert(data.message);
-						document.getElementById('submitBtn').disabled = false;
-						window.location.reload();
-					})
-			}
-		</script>
+    <script>
+      function sendMessage() {
+        const form = new FormData(document.getElementById("userSubmit"));
+        // document.getElementById('loading').style.display = "block";
+        let formBody = [];
+        for (let key of form.keys()) {
+          const encodedKey = encodeURIComponent(key);
+          const encodedValue = encodeURIComponent(form.get(key));
+          formBody.push(encodedKey + "=" + encodedValue);
+        }
+        formBody = formBody.join("&");
+        fetch("/api/v1/users/signUp", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: formBody,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data.message);
+            document.getElementById("submitBtn").disabled = false;
+            window.location.reload();
+          });
+      }
+    </script>
     <body class="body">
       <div class="login-page">
         <div class="form">
@@ -59,24 +63,37 @@
             ></lottie-player>
             <input type="text" name="name" placeholder="full name" />
             <input type="email" name="email" placeholder="email address" />
-            <input type="password" name="password" placeholder="set a password" />
-            <input type="password" id="password" name="passwordConfirm" placeholder="Confirm Password" />
+            <input
+              type="password"
+              name="password"
+              placeholder="set a password"
+            />
+            <input
+              type="password"
+              id="password"
+              name="passwordConfirm"
+              placeholder="Confirm Password"
+            />
             <select id="role" name="role">
               <option value="Farmer">Farmer</option>
               <option value="Manager">Manager</option>
             </select>
-            <br>
-            <br>
-            <button class="login-form" type="submit" id="submitBtn">SIGN UP</button>
+            <br />
+            <br />
+            <button class="login-form" type="submit" id="submitBtn">
+              SIGN UP
+            </button>
           </form>
         </div>
       </div>
     </body>
     <script>
-    document.getElementById("userSubmit").addEventListener("submit", (data) => {
-      data.preventDefault();
-      sendMessage();
-    });
+      document
+        .getElementById("userSubmit")
+        .addEventListener("submit", (data) => {
+          data.preventDefault();
+          sendMessage();
+        });
     </script>
   </html>
 </html>
