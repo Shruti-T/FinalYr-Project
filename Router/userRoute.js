@@ -5,11 +5,9 @@ const router = express.Router();
 
 router.get("/login", (req, res, next) => {
   try {
-    res.render("login", {
-      title: "LOGIN",
-    });
+    res.render("index");
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(500).json({
       status: "Fail",
       message: "Server Error!",
