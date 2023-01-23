@@ -1,0 +1,57 @@
+DOCTYPE html
+html lang="en"
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title login
+    link(rel="stylesheet" href="/css/styleLogin.css")
+    script(src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js")
+  head
+  body
+    .pgtitle
+      h1 Welcome! Please Insert In Your Details.
+    #container.container.box
+      .form-container.sign-up-container
+        form#userSubmit(action="/user" method="post")
+          h1 Insert Student
+          .social-container
+            a.social(href="#")
+              box-icon(type="solid" name="school")
+            a.social(href="#")
+              box-icon(type="solid" name="spreadsheet")
+            a.social(href="#")
+              box-icon(type="solid" name="user")
+          span Insert your student details here.
+          input(type="text" placeholder="username" name="studentName")
+          input(type="number" placeholder="phoneNumber" name="studentphone")
+          input(type="text" placeholder="Address" name="studentAddress")
+          input(type="text" placeholder="Branch" name="studentBranch")
+          button#submitBtn.Pgbtns.submitBtn(type="submit") Insert
+      .form-container.sign-in-container
+        form#facultySubmit(action="/faculty" method="post")
+          h1 Insert Faculty
+          .social-container
+            a.social(href="#")
+              box-icon(type="logo" name="microsoft-teams")
+            a.social(href="#")
+              box-icon(type="solid" name="pen")
+            a.social(href="#")
+              box-icon(type="solid" name="group")
+          span Insert the faculty details here.
+          input(type="text" placeholder="Name" name="facultyName")
+          input(type="text" placeholder="Subject" name="facultySubject")
+          button.Pgbtns.submitBtn(type="submit") Insert
+      .overlay-container
+        .overlay
+          .overlay-panel.overlay-left
+            h1 Hola
+            p Want to create a faculty member?Click on the "Create" button to get started!
+            button#signIn.ghost.Pgbtns Create
+          .overlay-panel.overlay-right
+            h1 Hello!
+            p Want to insert a new student?Click on the "Create" button to get started!
+            button#signUp.ghost.Pgbtns Create
+  body
+  script(src="/js/login.js")
+
