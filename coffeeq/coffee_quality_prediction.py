@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from xgboost import XGBRegressor
 from sklearn import metrics
 
-coffee=pd.read_csv("merged_data_cleaned.csv")
+coffee=pd.read_csv("../data/merged_data_cleaned.csv")
 coffee_data=coffee[["Aroma","Flavor","Acidity","Body","Balance","Uniformity","Clean.Cup","Sweetness","Cupper.Points","Moisture","Quakers","Category.One.Defects","Category.Two.Defects","altitude_mean_meters","Total.Cup.Points"]]
 
 x=coffee_data["altitude_mean_meters"].mean()
