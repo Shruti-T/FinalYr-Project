@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/login", (req, res, next) => {
   try {
-    res.render("loginSignUp");
+    res.render("farmer");
   } catch (err) {
     console.log(err);
     res.status(500).json({
