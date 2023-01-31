@@ -37,10 +37,10 @@ A = np.array([[8.67,8.83,8.67,8.75,8.50,8.42,10.0,10.0,10.0,8.75,0.12,0.0,0,0,20
 single_pred = model.predict(A)
 print(single_pred)
 ##saving the model for further use
-model.save_model("coffee_xgb.json")
+model.save_model("../models/coffee_xgb.json")
 ###loading the model
 model_xgb_2 = Booster()
-model_xgb_2.load_model("coffee_xgb.json")
+model_xgb_2.load_model("../models/coffee_xgb.json")
 ###prediction using saved model
 model_xgb_2.predict(DMatrix(A))
 tuple(A[0]) + (model_xgb_2.predict(DMatrix(A))[0],)
