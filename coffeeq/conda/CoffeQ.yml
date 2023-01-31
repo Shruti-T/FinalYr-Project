@@ -23,6 +23,7 @@ dependencies:
   - certifi=2022.12.7=py310haa95532_0
   - cffi=1.15.1=py310h2bbff1b_3
   - charset-normalizer=2.0.4=pyhd3eb1b0_0
+  - click=8.0.4=py310haa95532_0
   - colorama=0.4.6=py310haa95532_0
   - comm=0.1.2=py310haa95532_0
   - contourpy=1.0.5=py310h59b6b97_0
@@ -35,6 +36,7 @@ dependencies:
   - entrypoints=0.4=py310haa95532_0
   - executing=0.8.3=pyhd3eb1b0_0
   - fftw=3.3.9=h2bbff1b_1
+  - flask=2.2.2=py310haa95532_0
   - flit-core=3.6.0=pyhd3eb1b0_0
   - fonttools=4.25.0=pyhd3eb1b0_0
   - freetype=2.12.1=ha860e81_0
@@ -50,6 +52,7 @@ dependencies:
   - ipython=8.7.0=py310haa95532_0
   - ipython_genutils=0.2.0=pyhd3eb1b0_1
   - ipywidgets=7.6.5=pyhd3eb1b0_1
+  - itsdangerous=2.0.1=pyhd3eb1b0_0
   - jedi=0.18.1=py310haa95532_1
   - jinja2=3.1.2=py310haa95532_0
   - joblib=1.1.1=py310haa95532_0
@@ -174,6 +177,7 @@ dependencies:
   - wcwidth=0.2.5=pyhd3eb1b0_0
   - webencodings=0.5.1=py310haa95532_1
   - websocket-client=0.58.0=py310haa95532_4
+  - werkzeug=2.2.2=py310haa95532_0
   - wheel=0.37.1=pyhd3eb1b0_0
   - widgetsnbextension=3.5.2=py310haa95532_0
   - win_inet_pton=1.1.0=py310haa95532_0
@@ -187,7 +191,9 @@ dependencies:
   - pip:
     - cloudpickle==2.2.1
     - llvmlite==0.39.1
+    - mysql-connector-python==8.0.32
     - numba==0.56.4
+    - protobuf==3.20.3
     - qtconsole==5.4.0
     - shap==0.41.0
     - slicer==0.0.7
