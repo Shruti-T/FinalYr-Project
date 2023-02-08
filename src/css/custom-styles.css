@@ -427,3 +427,25 @@ padding-top: 14px;
 font-size: 19px;
 }
 }
+
+.forSale{
+    border-style: solid;
+    border: #000;
+    border-radius: 2px;
+    background-color: rgb(92, 184, 92,0.5);
+    padding:2px;
+    text-align: center;
+}
+.soldAction{
+    pointer-events: none;
+    color:black;
+
+}
+.soldBatch{
+    border-style: solid;
+    border: #000;
+    border-radius: 2px;
+    background-color: rgb(220, 59, 20,0.5);
+    padding:2px;
+    text-align: center;
+}
