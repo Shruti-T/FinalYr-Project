@@ -2627,4 +2627,1013 @@
 
     return DonutSegment;
   })(Morris.EventEmitter);
+
+  Morris.Donut = (function (_super) {
+    __extends(Donut, _super);
+
+    Donut.prototype.defaults = {
+      colors: [
+        "#0B62A4",
+        "#3980B5",
+        "#679DC6",
+        "#95BBD7",
+        "#B0CCE1",
+        "#095791",
+        "#095085",
+        "#083E67",
+        "#052C48",
+        "#042135",
+      ],
+      backgroundColor: "#FFFFFF",
+      labelColor: "#000000",
+      formatter: Morris.commas,
+      resize: false,
+    };
+
+    function Donut(options) {
+      this.resizeHandler = __bind(this.resizeHandler, this);
+      this.select = __bind(this.select, this);
+      this.click = __bind(this.click, this);
+      var _this = this;
+      if (!(this instanceof Morris.Donut)) {
+        return new Morris.Donut(options);
+      }
+      this.options = $.extend({}, this.defaults, options);
+      if (typeof options.element === "string") {
+        this.el = $(document.getElementById(options.element));
+      } else {
+        this.el = $(options.element);
+      }
+      if (this.el === null || this.el.length === 0) {
+        throw new Error("Graph placeholder not found.");
+      }
+      if (options.data === void 0 || options.data.length === 0) {
+        return;
+      }
+      this.raphael = new Raphael(this.el[0]);
+      if (this.options.resize) {
+        $(window).bind("resize", function (evt) {
+          if (_this.timeoutId != null) {
+            window.clearTimeout(_this.timeoutId);
+          }
+          return (_this.timeoutId = window.setTimeout(
+            _this.resizeHandler,
+            100
+          ));
+        });
+      }
+      this.setData(options.data);
+    }
+
+    Donut.prototype.redraw = function () {
+      var C,
+        cx,
+        cy,
+        i,
+        idx,
+        last,
+        max_value,
+        min,
+        next,
+        seg,
+        total,
+        value,
+        w,
+        _i,
+        _j,
+        _k,
+        _len,
+        _len1,
+        _len2,
+        _ref,
+        _ref1,
+        _ref2,
+        _results;
+      this.raphael.clear();
+      cx = this.el.width() / 2;
+      cy = this.el.height() / 2;
+      w = (Math.min(cx, cy) - 10) / 3;
+      total = 0;
+      _ref = this.values;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        value = _ref[_i];
+        total += value;
+      }
+      min = 5 / (2 * w);
+      C = 1.9999 * Math.PI - min * this.data.length;
+      last = 0;
+      idx = 0;
+      this.segments = [];
+      _ref1 = this.values;
+      for (i = _j = 0, _len1 = _ref1.length; _j < _len1; i = ++_j) {
+        value = _ref1[i];
+        next = last + min + C * (value / total);
+        seg = new Morris.DonutSegment(
+          cx,
+          cy,
+          w * 2,
+          w,
+          last,
+          next,
+          this.data[i].color ||
+            this.options.colors[idx % this.options.colors.length],
+          this.options.backgroundColor,
+          idx,
+          this.raphael
+        );
+        seg.render();
+        this.segments.push(seg);
+        seg.on("hover", this.select);
+        seg.on("click", this.click);
+        last = next;
+        idx += 1;
+      }
+      this.text1 = this.drawEmptyDonutLabel(
+        cx,
+        cy - 10,
+        this.options.labelColor,
+        15,
+        800
+      );
+      this.text2 = this.drawEmptyDonutLabel(
+        cx,
+        cy + 10,
+        this.options.labelColor,
+        14
+      );
+      max_value = Math.max.apply(Math, this.values);
+      idx = 0;
+      _ref2 = this.values;
+      _results = [];
+      for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+        value = _ref2[_k];
+        if (value === max_value) {
+          this.select(idx);
+          break;
+        }
+        _results.push((idx += 1));
+      }
+      return _results;
+    };
+
+    Donut.prototype.setData = function (data) {
+      var row;
+      this.data = data;
+      this.values = function () {
+        var _i, _len, _ref, _results;
+        _ref = this.data;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          row = _ref[_i];
+          _results.push(parseFloat(row.value));
+        }
+        return _results;
+      }.call(this);
+      return this.redraw();
+    };
+
+    Donut.prototype.click = function (idx) {
+      return this.fire("click", idx, this.data[idx]);
+    };
+
+    Donut.prototype.select = function (idx) {
+      var row, s, segment, _i, _len, _ref;
+      _ref = this.segments;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        s = _ref[_i];
+        s.deselect();
+      }
+      segment = this.segments[idx];
+      segment.select();
+      row = this.data[idx];
+      return this.setLabels(row.label, this.options.formatter(row.value, row));
+    };
+
+    Donut.prototype.setLabels = function (label1, label2) {
+      var inner,
+        maxHeightBottom,
+        maxHeightTop,
+        maxWidth,
+        text1bbox,
+        text1scale,
+        text2bbox,
+        text2scale;
+      inner =
+        ((Math.min(this.el.width() / 2, this.el.height() / 2) - 10) * 2) / 3;
+      maxWidth = 1.8 * inner;
+      maxHeightTop = inner / 2;
+      maxHeightBottom = inner / 3;
+      this.text1.attr({
+        text: label1,
+        transform: "",
+      });
+      text1bbox = this.text1.getBBox();
+      text1scale = Math.min(
+        maxWidth / text1bbox.width,
+        maxHeightTop / text1bbox.height
+      );
+      this.text1.attr({
+        transform:
+          "S" +
+          text1scale +
+          "," +
+          text1scale +
+          "," +
+          (text1bbox.x + text1bbox.width / 2) +
+          "," +
+          (text1bbox.y + text1bbox.height),
+      });
+      this.text2.attr({
+        text: label2,
+        transform: "",
+      });
+      text2bbox = this.text2.getBBox();
+      text2scale = Math.min(
+        maxWidth / text2bbox.width,
+        maxHeightBottom / text2bbox.height
+      );
+      return this.text2.attr({
+        transform:
+          "S" +
+          text2scale +
+          "," +
+          text2scale +
+          "," +
+          (text2bbox.x + text2bbox.width / 2) +
+          "," +
+          text2bbox.y,
+      });
+    };
+
+    Donut.prototype.drawEmptyDonutLabel = function (
+      xPos,
+      yPos,
+      color,
+      fontSize,
+      fontWeight
+    ) {
+      var text;
+      text = this.raphael
+        .text(xPos, yPos, "")
+        .attr("font-size", fontSize)
+        .attr("fill", color);
+      if (fontWeight != null) {
+        text.attr("font-weight", fontWeight);
+      }
+      return text;
+    };
+
+    Donut.prototype.resizeHandler = function () {
+      this.timeoutId = null;
+      this.raphael.setSize(this.el.width(), this.el.height());
+      return this.redraw();
+    };
+
+    return Donut;
+  })(Morris.EventEmitter);
+
+  Morris.DonutSegment = (function (_super) {
+    __extends(DonutSegment, _super);
+
+    function DonutSegment(
+      cx,
+      cy,
+      inner,
+      outer,
+      p0,
+      p1,
+      color,
+      backgroundColor,
+      index,
+      raphael
+    ) {
+      this.cx = cx;
+      this.cy = cy;
+      this.inner = inner;
+      this.outer = outer;
+      this.color = color;
+      this.backgroundColor = backgroundColor;
+      this.index = index;
+      this.raphael = raphael;
+      this.deselect = __bind(this.deselect, this);
+      this.select = __bind(this.select, this);
+      this.sin_p0 = Math.sin(p0);
+      this.cos_p0 = Math.cos(p0);
+      this.sin_p1 = Math.sin(p1);
+      this.cos_p1 = Math.cos(p1);
+      this.is_long = p1 - p0 > Math.PI ? 1 : 0;
+      this.path = this.calcSegment(this.inner + 3, this.inner + this.outer - 5);
+      this.selectedPath = this.calcSegment(
+        this.inner + 3,
+        this.inner + this.outer
+      );
+      this.hilight = this.calcArc(this.inner);
+    }
+
+    DonutSegment.prototype.calcArcPoints = function (r) {
+      return [
+        this.cx + r * this.sin_p0,
+        this.cy + r * this.cos_p0,
+        this.cx + r * this.sin_p1,
+        this.cy + r * this.cos_p1,
+      ];
+    };
+
+    DonutSegment.prototype.calcSegment = function (r1, r2) {
+      var ix0, ix1, iy0, iy1, ox0, ox1, oy0, oy1, _ref, _ref1;
+      (_ref = this.calcArcPoints(r1)),
+        (ix0 = _ref[0]),
+        (iy0 = _ref[1]),
+        (ix1 = _ref[2]),
+        (iy1 = _ref[3]);
+      (_ref1 = this.calcArcPoints(r2)),
+        (ox0 = _ref1[0]),
+        (oy0 = _ref1[1]),
+        (ox1 = _ref1[2]),
+        (oy1 = _ref1[3]);
+      return (
+        "M" +
+        ix0 +
+        "," +
+        iy0 +
+        ("A" + r1 + "," + r1 + ",0," + this.is_long + ",0," + ix1 + "," + iy1) +
+        ("L" + ox1 + "," + oy1) +
+        ("A" + r2 + "," + r2 + ",0," + this.is_long + ",1," + ox0 + "," + oy0) +
+        "Z"
+      );
+    };
+
+    DonutSegment.prototype.calcArc = function (r) {
+      var ix0, ix1, iy0, iy1, _ref;
+      (_ref = this.calcArcPoints(r)),
+        (ix0 = _ref[0]),
+        (iy0 = _ref[1]),
+        (ix1 = _ref[2]),
+        (iy1 = _ref[3]);
+      return (
+        "M" +
+        ix0 +
+        "," +
+        iy0 +
+        ("A" + r + "," + r + ",0," + this.is_long + ",0," + ix1 + "," + iy1)
+      );
+    };
+
+    DonutSegment.prototype.render = function () {
+      var _this = this;
+      this.arc = this.drawDonutArc(this.hilight, this.color);
+      return (this.seg = this.drawDonutSegment(
+        this.path,
+        this.color,
+        this.backgroundColor,
+        function () {
+          return _this.fire("hover", _this.index);
+        },
+        function () {
+          return _this.fire("click", _this.index);
+        }
+      ));
+    };
+
+    DonutSegment.prototype.drawDonutArc = function (path, color) {
+      return this.raphael.path(path).attr({
+        stroke: color,
+        "stroke-width": 2,
+        opacity: 0,
+      });
+    };
+
+    DonutSegment.prototype.drawDonutSegment = function (
+      path,
+      fillColor,
+      strokeColor,
+      hoverFunction,
+      clickFunction
+    ) {
+      return this.raphael
+        .path(path)
+        .attr({
+          fill: fillColor,
+          stroke: strokeColor,
+          "stroke-width": 3,
+        })
+        .hover(hoverFunction)
+        .click(clickFunction);
+    };
+
+    DonutSegment.prototype.select = function () {
+      if (!this.selected) {
+        this.seg.animate(
+          {
+            path: this.selectedPath,
+          },
+          150,
+          "<>"
+        );
+        this.arc.animate(
+          {
+            opacity: 1,
+          },
+          150,
+          "<>"
+        );
+        return (this.selected = true);
+      }
+    };
+
+    DonutSegment.prototype.deselect = function () {
+      if (this.selected) {
+        this.seg.animate(
+          {
+            path: this.path,
+          },
+          150,
+          "<>"
+        );
+        this.arc.animate(
+          {
+            opacity: 0,
+          },
+          150,
+          "<>"
+        );
+        return (this.selected = false);
+      }
+    };
+
+    return DonutSegment;
+  })(Morris.EventEmitter);
+
+  Morris.Line = (function (_super) {
+    __extends(Line, _super);
+
+    function Line(options) {
+      this.hilight = __bind(this.hilight, this);
+      this.onHoverOut = __bind(this.onHoverOut, this);
+      this.onHoverMove = __bind(this.onHoverMove, this);
+      this.onGridClick = __bind(this.onGridClick, this);
+      if (!(this instanceof Morris.Line)) {
+        return new Morris.Line(options);
+      }
+      Line.__super__.constructor.call(this, options);
+    }
+
+    Line.prototype.init = function () {
+      if (this.options.hideHover !== "always") {
+        this.hover = new Morris.Hover({
+          parent: this.el,
+        });
+        this.on("hovermove", this.onHoverMove);
+        this.on("hoverout", this.onHoverOut);
+        return this.on("gridclick", this.onGridClick);
+      }
+    };
+
+    Line.prototype.defaults = {
+      lineWidth: 3,
+      pointSize: 4,
+      lineColors: [
+        "#0b62a4",
+        "#7A92A3",
+        "#4da74d",
+        "#afd8f8",
+        "#edc240",
+        "#cb4b4b",
+        "#9440ed",
+      ],
+      pointStrokeWidths: [1],
+      pointStrokeColors: ["#ffffff"],
+      pointFillColors: [],
+      smooth: true,
+      xLabels: "auto",
+      xLabelFormat: null,
+      xLabelMargin: 24,
+      continuousLine: true,
+      hideHover: false,
+    };
+
+    Line.prototype.calc = function () {
+      this.calcPoints();
+      return this.generatePaths();
+    };
+
+    Line.prototype.calcPoints = function () {
+      var row, y, _i, _len, _ref, _results;
+      _ref = this.data;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        row = _ref[_i];
+        row._x = this.transX(row.x);
+        row._y = function () {
+          var _j, _len1, _ref1, _results1;
+          _ref1 = row.y;
+          _results1 = [];
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            y = _ref1[_j];
+            if (y != null) {
+              _results1.push(this.transY(y));
+            } else {
+              _results1.push(y);
+            }
+          }
+          return _results1;
+        }.call(this);
+        _results.push(
+          (row._ymax = Math.min.apply(
+            Math,
+            [this.bottom].concat(
+              (function () {
+                var _j, _len1, _ref1, _results1;
+                _ref1 = row._y;
+                _results1 = [];
+                for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+                  y = _ref1[_j];
+                  if (y != null) {
+                    _results1.push(y);
+                  }
+                }
+                return _results1;
+              })()
+            )
+          ))
+        );
+      }
+      return _results;
+    };
+
+    Line.prototype.hitTest = function (x) {
+      var index, r, _i, _len, _ref;
+      if (this.data.length === 0) {
+        return null;
+      }
+      _ref = this.data.slice(1);
+      for (index = _i = 0, _len = _ref.length; _i < _len; index = ++_i) {
+        r = _ref[index];
+        if (x < (r._x + this.data[index]._x) / 2) {
+          break;
+        }
+      }
+      return index;
+    };
+
+    Line.prototype.onGridClick = function (x, y) {
+      var index;
+      index = this.hitTest(x);
+      return this.fire("click", index, this.data[index].src, x, y);
+    };
+
+    Line.prototype.onHoverMove = function (x, y) {
+      var index;
+      index = this.hitTest(x);
+      return this.displayHoverForRow(index);
+    };
+
+    Line.prototype.onHoverOut = function () {
+      if (this.options.hideHover !== false) {
+        return this.displayHoverForRow(null);
+      }
+    };
+
+    Line.prototype.displayHoverForRow = function (index) {
+      var _ref;
+      if (index != null) {
+        (_ref = this.hover).update.apply(_ref, this.hoverContentForRow(index));
+        return this.hilight(index);
+      } else {
+        this.hover.hide();
+        return this.hilight();
+      }
+    };
+
+    Line.prototype.hoverContentForRow = function (index) {
+      var content, j, row, y, _i, _len, _ref;
+      row = this.data[index];
+      content = "<div class='morris-hover-row-label'>" + row.label + "</div>";
+      _ref = row.y;
+      for (j = _i = 0, _len = _ref.length; _i < _len; j = ++_i) {
+        y = _ref[j];
+        content +=
+          "<div class='morris-hover-point' style='color: " +
+          this.colorFor(row, j, "label") +
+          "'>\n  " +
+          this.options.labels[j] +
+          ":\n  " +
+          this.yLabelFormat(y) +
+          "\n</div>";
+      }
+      if (typeof this.options.hoverCallback === "function") {
+        content = this.options.hoverCallback(
+          index,
+          this.options,
+          content,
+          row.src
+        );
+      }
+      return [content, row._x, row._ymax];
+    };
+
+    Line.prototype.generatePaths = function () {
+      var c, coords, i, r, smooth;
+      return (this.paths = function () {
+        var _i, _ref, _ref1, _results;
+        _results = [];
+        for (
+          i = _i = 0, _ref = this.options.ykeys.length;
+          0 <= _ref ? _i < _ref : _i > _ref;
+          i = 0 <= _ref ? ++_i : --_i
+        ) {
+          smooth =
+            typeof this.options.smooth === "boolean"
+              ? this.options.smooth
+              : ((_ref1 = this.options.ykeys[i]),
+                __indexOf.call(this.options.smooth, _ref1) >= 0);
+          coords = function () {
+            var _j, _len, _ref2, _results1;
+            _ref2 = this.data;
+            _results1 = [];
+            for (_j = 0, _len = _ref2.length; _j < _len; _j++) {
+              r = _ref2[_j];
+              if (r._y[i] !== void 0) {
+                _results1.push({
+                  x: r._x,
+                  y: r._y[i],
+                });
+              }
+            }
+            return _results1;
+          }.call(this);
+          if (this.options.continuousLine) {
+            coords = (function () {
+              var _j, _len, _results1;
+              _results1 = [];
+              for (_j = 0, _len = coords.length; _j < _len; _j++) {
+                c = coords[_j];
+                if (c.y !== null) {
+                  _results1.push(c);
+                }
+              }
+              return _results1;
+            })();
+          }
+          if (coords.length > 1) {
+            _results.push(Morris.Line.createPath(coords, smooth, this.bottom));
+          } else {
+            _results.push(null);
+          }
+        }
+        return _results;
+      }.call(this));
+    };
+
+    Line.prototype.draw = function () {
+      var _ref;
+      if (
+        (_ref = this.options.axes) === true ||
+        _ref === "both" ||
+        _ref === "x"
+      ) {
+        this.drawXAxis();
+      }
+      this.drawSeries();
+      if (this.options.hideHover === false) {
+        return this.displayHoverForRow(this.data.length - 1);
+      }
+    };
+
+    Line.prototype.drawXAxis = function () {
+      var drawLabel,
+        l,
+        labels,
+        prevAngleMargin,
+        prevLabelMargin,
+        row,
+        ypos,
+        _i,
+        _len,
+        _results,
+        _this = this;
+      ypos = this.bottom + this.options.padding / 2;
+      prevLabelMargin = null;
+      prevAngleMargin = null;
+      drawLabel = function (labelText, xpos) {
+        var label, labelBox, margin, offset, textBox;
+        label = _this.drawXAxisLabel(_this.transX(xpos), ypos, labelText);
+        textBox = label.getBBox();
+        label.transform("r" + -_this.options.xLabelAngle);
+        labelBox = label.getBBox();
+        label.transform("t0," + labelBox.height / 2 + "...");
+        if (_this.options.xLabelAngle !== 0) {
+          offset =
+            -0.5 *
+            textBox.width *
+            Math.cos((_this.options.xLabelAngle * Math.PI) / 180.0);
+          label.transform("t" + offset + ",0...");
+        }
+        labelBox = label.getBBox();
+        if (
+          (prevLabelMargin == null ||
+            prevLabelMargin >= labelBox.x + labelBox.width ||
+            (prevAngleMargin != null && prevAngleMargin >= labelBox.x)) &&
+          labelBox.x >= 0 &&
+          labelBox.x + labelBox.width < _this.el.width()
+        ) {
+          if (_this.options.xLabelAngle !== 0) {
+            margin =
+              (1.25 * _this.options.gridTextSize) /
+              Math.sin((_this.options.xLabelAngle * Math.PI) / 180.0);
+            prevAngleMargin = labelBox.x - margin;
+          }
+          return (prevLabelMargin = labelBox.x - _this.options.xLabelMargin);
+        } else {
+          return label.remove();
+        }
+      };
+      if (this.options.parseTime) {
+        if (this.data.length === 1 && this.options.xLabels === "auto") {
+          labels = [[this.data[0].label, this.data[0].x]];
+        } else {
+          labels = Morris.labelSeries(
+            this.xmin,
+            this.xmax,
+            this.width,
+            this.options.xLabels,
+            this.options.xLabelFormat
+          );
+        }
+      } else {
+        labels = function () {
+          var _i, _len, _ref, _results;
+          _ref = this.data;
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            row = _ref[_i];
+            _results.push([row.label, row.x]);
+          }
+          return _results;
+        }.call(this);
+      }
+      labels.reverse();
+      _results = [];
+      for (_i = 0, _len = labels.length; _i < _len; _i++) {
+        l = labels[_i];
+        _results.push(drawLabel(l[0], l[1]));
+      }
+      return _results;
+    };
+
+    Line.prototype.drawSeries = function () {
+      var i, _i, _j, _ref, _ref1, _results;
+      this.seriesPoints = [];
+      for (
+        i = _i = _ref = this.options.ykeys.length - 1;
+        _ref <= 0 ? _i <= 0 : _i >= 0;
+        i = _ref <= 0 ? ++_i : --_i
+      ) {
+        this._drawLineFor(i);
+      }
+      _results = [];
+      for (
+        i = _j = _ref1 = this.options.ykeys.length - 1;
+        _ref1 <= 0 ? _j <= 0 : _j >= 0;
+        i = _ref1 <= 0 ? ++_j : --_j
+      ) {
+        _results.push(this._drawPointFor(i));
+      }
+      return _results;
+    };
+
+    Line.prototype._drawPointFor = function (index) {
+      var circle, row, _i, _len, _ref, _results;
+      this.seriesPoints[index] = [];
+      _ref = this.data;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        row = _ref[_i];
+        circle = null;
+        if (row._y[index] != null) {
+          circle = this.drawLinePoint(
+            row._x,
+            row._y[index],
+            this.colorFor(row, index, "point"),
+            index
+          );
+        }
+        _results.push(this.seriesPoints[index].push(circle));
+      }
+      return _results;
+    };
+
+    Line.prototype._drawLineFor = function (index) {
+      var path;
+      path = this.paths[index];
+      if (path !== null) {
+        return this.drawLinePath(
+          path,
+          this.colorFor(null, index, "line"),
+          index
+        );
+      }
+    };
+
+    Line.createPath = function (coords, smooth, bottom) {
+      var coord, g, grads, i, ix, lg, path, prevCoord, x1, x2, y1, y2, _i, _len;
+      path = "";
+      if (smooth) {
+        grads = Morris.Line.gradients(coords);
+      }
+      prevCoord = {
+        y: null,
+      };
+      for (i = _i = 0, _len = coords.length; _i < _len; i = ++_i) {
+        coord = coords[i];
+        if (coord.y != null) {
+          if (prevCoord.y != null) {
+            if (smooth) {
+              g = grads[i];
+              lg = grads[i - 1];
+              ix = (coord.x - prevCoord.x) / 4;
+              x1 = prevCoord.x + ix;
+              y1 = Math.min(bottom, prevCoord.y + ix * lg);
+              x2 = coord.x - ix;
+              y2 = Math.min(bottom, coord.y - ix * g);
+              path +=
+                "C" +
+                x1 +
+                "," +
+                y1 +
+                "," +
+                x2 +
+                "," +
+                y2 +
+                "," +
+                coord.x +
+                "," +
+                coord.y;
+            } else {
+              path += "L" + coord.x + "," + coord.y;
+            }
+          } else {
+            if (!smooth || grads[i] != null) {
+              path += "M" + coord.x + "," + coord.y;
+            }
+          }
+        }
+        prevCoord = coord;
+      }
+      return path;
+    };
+
+    Line.gradients = function (coords) {
+      var coord, grad, i, nextCoord, prevCoord, _i, _len, _results;
+      grad = function (a, b) {
+        return (a.y - b.y) / (a.x - b.x);
+      };
+      _results = [];
+      for (i = _i = 0, _len = coords.length; _i < _len; i = ++_i) {
+        coord = coords[i];
+        if (coord.y != null) {
+          nextCoord = coords[i + 1] || {
+            y: null,
+          };
+          prevCoord = coords[i - 1] || {
+            y: null,
+          };
+          if (prevCoord.y != null && nextCoord.y != null) {
+            _results.push(grad(prevCoord, nextCoord));
+          } else if (prevCoord.y != null) {
+            _results.push(grad(prevCoord, coord));
+          } else if (nextCoord.y != null) {
+            _results.push(grad(coord, nextCoord));
+          } else {
+            _results.push(null);
+          }
+        } else {
+          _results.push(null);
+        }
+      }
+      return _results;
+    };
+
+    Line.prototype.hilight = function (index) {
+      var i, _i, _j, _ref, _ref1;
+      if (this.prevHilight !== null && this.prevHilight !== index) {
+        for (
+          i = _i = 0, _ref = this.seriesPoints.length - 1;
+          0 <= _ref ? _i <= _ref : _i >= _ref;
+          i = 0 <= _ref ? ++_i : --_i
+        ) {
+          if (this.seriesPoints[i][this.prevHilight]) {
+            this.seriesPoints[i][this.prevHilight].animate(
+              this.pointShrinkSeries(i)
+            );
+          }
+        }
+      }
+      if (index !== null && this.prevHilight !== index) {
+        for (
+          i = _j = 0, _ref1 = this.seriesPoints.length - 1;
+          0 <= _ref1 ? _j <= _ref1 : _j >= _ref1;
+          i = 0 <= _ref1 ? ++_j : --_j
+        ) {
+          if (this.seriesPoints[i][index]) {
+            this.seriesPoints[i][index].animate(this.pointGrowSeries(i));
+          }
+        }
+      }
+      return (this.prevHilight = index);
+    };
+
+    Line.prototype.colorFor = function (row, sidx, type) {
+      if (typeof this.options.lineColors === "function") {
+        return this.options.lineColors.call(this, row, sidx, type);
+      } else if (type === "point") {
+        return (
+          this.options.pointFillColors[
+            sidx % this.options.pointFillColors.length
+          ] || this.options.lineColors[sidx % this.options.lineColors.length]
+        );
+      } else {
+        return this.options.lineColors[sidx % this.options.lineColors.length];
+      }
+    };
+
+    Line.prototype.drawXAxisLabel = function (xPos, yPos, text) {
+      return this.raphael
+        .text(xPos, yPos, text)
+        .attr("font-size", this.options.gridTextSize)
+        .attr("font-family", this.options.gridTextFamily)
+        .attr("font-weight", this.options.gridTextWeight)
+        .attr("fill", this.options.gridTextColor);
+    };
+
+    Line.prototype.drawLinePath = function (path, lineColor, lineIndex) {
+      return this.raphael
+        .path(path)
+        .attr("stroke", lineColor)
+        .attr("stroke-width", this.lineWidthForSeries(lineIndex));
+    };
+
+    Line.prototype.drawLinePoint = function (
+      xPos,
+      yPos,
+      pointColor,
+      lineIndex
+    ) {
+      return this.raphael
+        .circle(xPos, yPos, this.pointSizeForSeries(lineIndex))
+        .attr("fill", pointColor)
+        .attr("stroke-width", this.pointStrokeWidthForSeries(lineIndex))
+        .attr("stroke", this.pointStrokeColorForSeries(lineIndex));
+    };
+
+    Line.prototype.pointStrokeWidthForSeries = function (index) {
+      return this.options.pointStrokeWidths[
+        index % this.options.pointStrokeWidths.length
+      ];
+    };
+
+    Line.prototype.pointStrokeColorForSeries = function (index) {
+      return this.options.pointStrokeColors[
+        index % this.options.pointStrokeColors.length
+      ];
+    };
+
+    Line.prototype.lineWidthForSeries = function (index) {
+      if (this.options.lineWidth instanceof Array) {
+        return this.options.lineWidth[index % this.options.lineWidth.length];
+      } else {
+        return this.options.lineWidth;
+      }
+    };
+
+    Line.prototype.pointSizeForSeries = function (index) {
+      if (this.options.pointSize instanceof Array) {
+        return this.options.pointSize[index % this.options.pointSize.length];
+      } else {
+        return this.options.pointSize;
+      }
+    };
+
+    Line.prototype.pointGrowSeries = function (index) {
+      return Raphael.animation(
+        {
+          r: this.pointSizeForSeries(index) + 3,
+        },
+        25,
+        "linear"
+      );
+    };
+
+    Line.prototype.pointShrinkSeries = function (index) {
+      return Raphael.animation(
+        {
+          r: this.pointSizeForSeries(index),
+        },
+        25,
+        "linear"
+      );
+    };
+
+    return Line;
+  })(Morris.Grid);
 }.call(this));
