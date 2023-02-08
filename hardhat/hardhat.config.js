@@ -10,10 +10,8 @@ module.exports = {
   defaultNetwork: "goerli",
   solidity: "0.7.4",
   networks: {
-    hardhat: {
-    },
     goerli: {
-      url:  [API_KEY],
+      url: API_KEY,
       accounts: [PRIVATE_KEY],
     },
   },
