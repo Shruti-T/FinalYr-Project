@@ -4,10 +4,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FinalYr</title>
-    <link href="/css/bootstrap.css" rel="stylesheet" />
-    <link href="/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
-    <link href="/css/custom-styles.css" rel="stylesheet" />
+    <title>DezChain</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="../css/custom-styles.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../img/logo.png">
+    <link rel="icon" href="../img/logo.png">
+
 </head>
 
 <body>
@@ -20,13 +23,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Supply-Chain</a>
+                
+                <a class="navbar-brand" href="index.html">DezChain</a>
             </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
                         <!-- <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i> -->
-                        User Name/Icon
+                        Profile
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -47,7 +51,7 @@
                         <a class="active-menu" href="index.html"><i class="fa fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
-                        <a href="table.html"><i class="fa fa-table"></i> Responsive Tables</a>
+                        <a href="transaction.html"><i class="fa fa-table"></i> Your Transactions</a>
                     </li>
                     <li>
                         <a href="form.html"><i class="fa fa-edit"></i> Forms </a>
@@ -67,15 +71,16 @@
                         </h1>
                     </div>
                 </div>
+                <div id="google_translate_element"></div>
                 <div class="row">
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <div class="panel panel-primary text-center no-boder bg-color-green">
                             <div class="panel-body">
                                 <i class="fa fa-bar-chart-o fa-5x"></i>
-                                <h3>8,457</h3>
+                                <h3>10.24 Million</h3>
                             </div>
                             <div class="panel-footer back-footer-green">
-                                Daily Visits
+                                Coffee Exports
                             </div>
                         </div>
                     </div>
@@ -83,10 +88,10 @@
                         <div class="panel panel-primary text-center no-boder bg-color-blue">
                             <div class="panel-body">
                                 <i class="fa fa-shopping-cart fa-5x"></i>
-                                <h3>52,160 </h3>
+                                <h3>115,000 MT</h3>
                             </div>
                             <div class="panel-footer back-footer-blue">
-                                Your Sales
+                                Consumption in India
                             </div>
                         </div>
                     </div>
@@ -94,10 +99,10 @@
                         <div class="panel panel-primary text-center no-boder bg-color-red">
                             <div class="panel-body">
                                 <i class="fa fa fa-comments fa-5x"></i>
-                                <h3>15,823 </h3>
+                                <h3>164,108 MT</h3>
                             </div>
                             <div class="panel-footer back-footer-red">
-                                Your Comments
+                                Exports from India
                             </div>
                         </div>
                     </div>
@@ -105,10 +110,10 @@
                         <div class="panel panel-primary text-center no-boder bg-color-brown">
                             <div class="panel-body">
                                 <i class="fa fa-users fa-5x"></i>
-                                <h3>36,752 </h3>
+                                <h3>101,500 MT</h3>
                             </div>
                             <div class="panel-footer back-footer-brown">
-                                Number of Visits
+                                Arabica Production
                             </div>
                         </div>
                     </div>
@@ -117,7 +122,7 @@
                     <div class="col-md-9 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Current Coffee market
+                                Coffee Production (in million tones) in 4 different countries
                             </div>
                             <div class="panel-body">
                                 <div id="morris-bar-chart"></div>
@@ -127,7 +132,7 @@
                     <div class="col-md-3 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                Your Sales
+                                Profit Distribution (%)
                             </div>
                             <div class="panel-body">
                                 <div id="morris-donut-chart"></div>
@@ -135,14 +140,40 @@
                         </div>
                     </div>
                 </div>
+                <div class="row"><div class="alan-btn"></div></div>
             </div>
         </div>
     </div>
-    <script src="/js/jquery-1.10.2.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.metisMenu.js"></script>
-    <script src="/js/morris/raphael-2.1.0.min.js"></script>
-    <script src="/js/morris/morris.js"></script>
-    <script src="/js/custom-scripts.js"></script>
+    <script type="text/javascript"
+    src="https://studio.alan.app/web/lib/alan_lib.min.js"></script>
+    <script>
+    var alanBtnInstance = alanBtn({
+        key: "9eb341ce092c2ca14436bd1253caa3b52e956eca572e1d8b807a3e2338fdd0dc/stage",
+        onCommand: function (commandData) {
+        if (commandData.command === "go:back") {
+            //call client code that will react on the received command
+        }
+        },
+        rootEl: document.getElementById("alan-btn"),
+    });
+    </script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement(
+            { pageLanguage: "en" },
+            "google_translate_element"
+          );
+        }
+    </script>
+    <script
+        type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+    <script src="../js/jquery-1.10.2.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.metisMenu.js"></script>
+    <script src="../js/morris/raphael-2.1.0.min.js"></script>
+    <script src="../js/morris/morris.js"></script>
+    <script src="../js/custom-scripts.js"></script>
 </body>
 </html>
