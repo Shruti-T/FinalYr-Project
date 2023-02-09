@@ -71,12 +71,9 @@ function displayTransaction(radioVal) {
     } else {
       param = year - 1;
     }
-    // console.log(param, radioVal, "this is param");
-
     //display none
     var tds = document.getElementsByTagName("td");
     for (m = 0; m < allDates.length; m++) {
-      console.log(param, allDates[m].split("/"), "------");
       let splitIndex = 1;
       if (radioVal == "thisMonth") {
         splitIndex = 1;
