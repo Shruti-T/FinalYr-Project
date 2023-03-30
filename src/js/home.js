@@ -1,77 +1,76 @@
-const FARMER_CONTRACT_ADDRESS = "0x457d47c99af82b79f46d6d98cc5fcdb50b95facf";
+const FARMER_CONTRACT_ADDRESS = "0x3db847400071a10ffacb7d75ce150cbadab7082c";
 const FARMER_ABI = [
   {
-    inputs: [],
-    stateMutability: "nonpayable",
-    type: "constructor",
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
     ],
-    name: "FarmerAdded",
-    type: "event",
+    "name": "FarmerAdded",
+    "type": "event"
   },
   {
-    anonymous: false,
-    inputs: [
+    "anonymous": false,
+    "inputs": [
       {
-        indexed: true,
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
+        "indexed": true,
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
     ],
-    name: "FarmerRemoved",
-    type: "event",
+    "name": "FarmerRemoved",
+    "type": "event"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
     ],
-    name: "addFarmer",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
+    "name": "addFarmer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    inputs: [
+    "inputs": [
       {
-        internalType: "address",
-        name: "account",
-        type: "address",
-      },
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
     ],
-    name: "isFarmer",
-    outputs: [
+    "name": "isFarmer",
+    "outputs": [
       {
-        internalType: "bool",
-        name: "",
-        type: "bool",
-      },
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
     ],
-    stateMutability: "view",
-    type: "function",
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    inputs: [],
-    name: "renounceFarmer",
-    outputs: [],
-    stateMutability: "nonpayable",
-    type: "function",
-  },
+    "inputs": [],
+    "name": "renounceFarmer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
 ];
-
 // const DISTRIBUTOR_CONTRACT_ADDRESS =
 //   "0x39090c4b880fb8db1f93e0ce9dfddf9c93e2d477";
 // const DISTRIBUTOR_ABI = [
