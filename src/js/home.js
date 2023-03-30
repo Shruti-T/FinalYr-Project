@@ -1021,3 +1021,10 @@ const connectContract = async () => {
   document.getElementById("contractArea").innerHTML =
     "connected to smart contract";
 };
+
+const readContract = async () => {
+  const data = await window.contract.methods
+    .isFarmer("0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6")
+    .call();
+  document.getElementById("dataArea").innerHTML = data;
+};
