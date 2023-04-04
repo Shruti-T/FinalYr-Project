@@ -1012,6 +1012,11 @@ const connectMetamask = async () => {
   }
 };
 
+// // 1.b) logout from smart contract
+// const logoutMetaMask = async () => {
+//   await ethereum.request({ method: "eth_requestAccounts" });
+// };
+
 //2- connect to smart contract
 const connectContract = async () => {
   const Address = FARMER_CONTRACT_ADDRESS;
@@ -1021,6 +1026,7 @@ const connectContract = async () => {
     "connected to smart contract";
 };
 
+//3) read value from smart contract
 const readContract = async () => {
   const data = await window.contract.methods
     .isFarmer("0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6")

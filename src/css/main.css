@@ -1,0 +1,72 @@
+/*--------------Navbar-----------*/
+.navbar{
+    z-index: 100;
+    background-color:  rgba(93, 66, 53, 0.1);;
+}
+.nav-text {
+    font-family: "mate sc";
+    color: black;
+    font-size: large;
+    font-weight: 400;
+}
+.nav-text:hover {
+text-decoration: underline;
+}
+.nav-button {
+border-radius: 50%;
+}
+
+/* -------------Top Home page----------- */
+.mainHeader{
+    font-family: "mate sc";
+}
+.coffeeBatchId{
+    border: none;
+    border-bottom: 1px solid #000;
+    outline: none;
+    background-color: transparent;
+    
+}
+.coffeeidInput{
+    width: 300px;
+}
+.mainHome{
+    background-color: #f6f5f3;
+}
+
+/* -------------About Us------------- */
+.parallax {
+    position: relative;
+    height: 500px;
+}
+
+.parallax-background {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-image: url('../img/try1.gif');
+background-size: cover;
+background-attachment: fixed;
+z-index: -1;
+}
+
+.parallax-content {
+position: absolute;
+top: 30%;
+left: 50%;
+transform: translate(-50%, -50%);
+text-align: center;
+color: #fff;
+}
+
+.parallax h1 {
+font-size: 48px;
+margin-bottom: 16px;
+}
+
+.parallax p {
+font-size: 24px;
+}
+
