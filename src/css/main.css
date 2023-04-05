@@ -22,7 +22,7 @@
 }
 .coffeeBatchId{
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid #fff;
     outline: none;
     background-color: transparent;
     
@@ -68,6 +68,46 @@
 
 .parallax p {
     font-size: 24px;
+}
+/* ------------Services------------ */
+.button-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+  
+.button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #ccc;
+    color: #fff;
+    cursor: pointer;
+}
+  
+.button.active {
+    background-color: #f00;
+}
+  
+.content {
+    display: none;
+    margin: 20px 0;
+}
+  
+.content.active {
+    display: block;
+}
+.serviceText{
+    position: relative;
+}
+.serviceBtn{
+    position: absolute;
+  bottom: 0px;
+}
+.serviceBtnImg{
+    max-width: 80px;
 }
 
 /* ------------footer --------------*/
