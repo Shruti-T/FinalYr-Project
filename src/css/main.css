@@ -102,9 +102,12 @@
 .serviceText{
     position: relative;
 }
-.serviceBtn{
-    position: absolute;
-  bottom: 0px;
+@media (min-width: 1000px) {
+    .serviceBtn{
+        position: absolute;
+        bottom: 0px;
+    }
+    
 }
 .serviceBtnImg{
     max-width: 80px;
