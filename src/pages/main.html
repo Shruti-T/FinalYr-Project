@@ -21,12 +21,14 @@
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
         <link href="../css/main.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <title>
             Dezchain
         </title>
     </head>
     <body class="mainHome">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg" id="nav">
             <button
               class="navbar-toggler navbar-light ml-auto"
               type="button"
@@ -40,15 +42,20 @@
             </button>
       
             <div class="collapse navbar-collapse ml-3" id="navbarTogglerDemo02">
+              <!-- <div class="container"> -->
+                <a class="navbar-brand" href="#">
+                  <img src="../img/2.png" alt="Bootstrap" class="navLogo">
+                </a>
+              <!-- </div> -->
               <ul class="navbar-nav mt-2 mt-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link nav-text px-2" href="#aboutMe">About Us</a>
+                  <a class="nav-link nav-text px-2" href="#aboutUs">About Us</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link nav-text px-2" href="#experience">Services</a>
+                  <a class="nav-link nav-text px-2" href="#services">Services</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link nav-text px-2" href="#skills">Team</a>
+                  <a class="nav-link nav-text px-2" href="#skills">Benefits</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link nav-text px-2" href="#contact">Contact</a>
@@ -71,34 +78,46 @@
             </div>
         </div>
 
-        <div class="container my-5">
-            <h2 class="d-flex justify-content-center text-uppercase mainHeader">About Us</h2>
-            <p class="d-flex justify-content-center mx-3">
+        <div class="container my-5 px-5 aboutUsBox" id="aboutUs">
+            <h2 class="d-flex justify-content-center text-uppercase mainHeader aboutTitle">About Us</h2>
+            <p class="d-flex justify-content-center pt-5 container px-5">
                 Some dezchain stuff...blah blha...Blockchain.com is a cryptocurrency financial services company. 
                 The company began as the first Bitcoin blockchain explorer in 2011 and later created a cryptocurrency 
                 wallet that accounted for 28% of bitcoin transactions between 2012 and 2020
             </p>
+            <img src="../img/beans.png" class="img-responsive aboutUsImg">
         </div>
 
-        <!-- <div class="button-row">
-            <button class="button active" onclick="showContent('content-1')">Button 1</button>
-            <button class="button" onclick="showContent('content-2')">Button 2</button>
-            <button class="button" onclick="showContent('content-3')">Button 3</button>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-sm">
+              <div class="card marketCards" style="width: 18rem;">
+                <img src="../img/middle.png" class="card-img-top rounded-circle p-3 " alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">cost</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="card marketCards" style="width: 18rem;">
+                <img src="../img/middle1.webp" class="card-img-top rounded-circle p-3 " alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">production</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="card marketCards" style="width: 18rem;">
+                <img src="../img/middle2.jpg" class="card-img-top rounded-circle p-3 " alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">consumption rate/ sales</h5>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-          
-        <div id="content-1" class="content active">
-        <p>Content 1 goes here</p>
-        </div>
-        
-        <div id="content-2" class="content">
-        <p>Content 2 goes here</p>
-        </div>
-        
-        <div id="content-3" class="content">
-        <p>Content 3 goes here</p>
-        </div> -->
 
-        <div class="container my-3 serviceContainer">
+        <div class="container my-3 serviceContainer" id="services">
             <div class="container my-5">
                 <h2 class="d-flex justify-content-center text-uppercase mainHeader">Services</h2>
                 <p class="d-flex justify-content-center">some details about metamask login and its extension!....</p>
@@ -176,8 +195,7 @@
         </div>
 
           
-
-        <footer class=" text-center text-lg-start footer-style" id="contact">
+        <footer class=" text-center text-lg-start footer-style mainHeader" id="contact">
             <div class="skill-section-title p-3">
               <h4 class="p-2">Contact Us</h4>
               <hr class="footer-line">

@@ -16,3 +16,15 @@ function showContent(id) {
   // Add the active class to the selected button
   event.target.classList.add("active");
 }
+
+$(document).ready(function () {
+  $('a[href^="#"]').click(function (event) {
+    event.preventDefault();
+    $("html, body").animate(
+      {
+        scrollTop: $($.attr(this, "href")).offset().top,
+      },
+      1000
+    );
+  });
+});
