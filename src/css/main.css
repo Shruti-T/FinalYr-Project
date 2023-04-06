@@ -70,35 +70,6 @@
     font-size: 24px;
 }
 /* ------------Services------------ */
-/* .button-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px 0;
-}
-  
-.button {
-    padding: 10px 20px;
-    margin: 0 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #ccc;
-    color: #fff;
-    cursor: pointer;
-}
-  
-.button.active {
-    background-color: #f00;
-} */
-  
-/* .content {
-    display: none;
-    margin: 20px 0;
-}
-  
-.content.active {
-    display: block;
-} */
 .serviceText{
     position: relative;
 }
@@ -144,9 +115,71 @@
 }
 
 .flip-box-back {
-    background-color: #1e96a6;
+    background-color: #096286;
     color: white;
     transform: rotateY(180deg);
+}
+
+.btn-three {
+    color: #FFF;
+    transition: all 0.5s;
+    position: relative;
+}
+.btn-three::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.1);
+    transition: all 0.3s;
+}
+.btn-three:hover::before {
+    opacity: 0 ;
+    transform: scale(0.5,0.5);
+}
+.btn-three::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.5);
+    transform: scale(1.2,1.2);
+}
+.btn-three:hover::after {
+    opacity: 1;
+    transform: scale(1,1);
+}
+.box-3 { 
+    background-color: #096286; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:200px
+}
+@media (max-width:1000px){
+    .box-3 { 
+        width:180px
+    }
+}
+@media (max-width:769px){
+    .box-3 { 
+        width:150px
+    }
+}
+.btn {
+  line-height: 38px;
+  height: 50px;
+  text-align: center;
+  width: 200px;
+  cursor: pointer;
 }
 
 /* ------------footer --------------*/
