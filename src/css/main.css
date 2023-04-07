@@ -101,12 +101,15 @@
     left:50%;
 }
 
+
 /* ---------Market details---------- */
 .marketCards{
     background-color: transparent !important;
     border-style: hidden;
 }
-
+.marketImg{
+    clip-path: circle(32.5% at 50% 50%);
+}
 
 /* ------------Services------------ */
 .serviceText{
