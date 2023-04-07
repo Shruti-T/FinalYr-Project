@@ -100,7 +100,43 @@
     width:500px;
     left:50%;
 }
-
+@media (max-width:1000px){
+    .aboutUsImg{
+        position: absolute;
+        top:90px;
+        width:350px;
+        left:60%;
+    }
+    .aboutUsBox{
+        width:900px;
+        height:300px;
+    }
+}
+@media (max-width:900px){
+    .aboutUsImg{
+        position: absolute;
+        top:90px;
+        width:300px;
+        left:60%;
+    }
+}
+@media (max-width:700px){
+    .aboutUsImg{
+        position: absolute;
+        top:90px;
+        width:300px;
+        left:45%;
+    }
+    .aboutUsBox{
+        width:auto;
+        height:300px;
+    }
+}
+@media (max-width:550px){
+    .aboutUsImg{
+        display: none;
+    }
+}
 
 /* ---------Market details---------- */
 .marketCards{
