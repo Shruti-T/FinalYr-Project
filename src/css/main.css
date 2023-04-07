@@ -131,6 +131,9 @@
         width:auto;
         height:300px;
     }
+    .aboutTitle{
+        left:35%;
+    }
 }
 @media (max-width:550px){
     .aboutUsImg{
