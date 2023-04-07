@@ -162,6 +162,24 @@
     border-style: double;
     border-color: #412518;
 }
+.stepsModal{
+    color: #096286;
+    width:150px
+}
+.metaLogo{
+    width:40px;
+    height:40px
+}
+.modal-header{
+    background-image: url('../img/modalHead.png');
+}
+.modal-body{
+    background-image: url('../img/modalBody.webp');
+}
+.stepsModal:hover{
+    cursor: pointer;
+    color:#795d43
+}
 .flip-box {
     background-color: transparent;
     height: 300px;
