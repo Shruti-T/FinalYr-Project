@@ -1007,8 +1007,13 @@ let account;
 const connectMetamask = async () => {
   if (window.ethereum !== "undefined") {
     const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    console.log(accounts);
     account = accounts[0];
-    document.getElementById("accountArea").innerHTML = account;
+    const data = readContract();
+    if (data) {
+      window.location.href = "/src/pages/index.html";
+    }
+    // document.getElementById("accountArea").innerHTML = account;
   }
 };
 
@@ -1031,5 +1036,6 @@ const readContract = async () => {
   const data = await window.contract.methods
     .isFarmer("0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6")
     .call();
-  document.getElementById("dataArea").innerHTML = data;
+  // document.getElementById("dataArea").innerHTML = data;
+  return data;
 };
