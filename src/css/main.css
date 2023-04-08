@@ -76,6 +76,9 @@
 .parallax p {
     font-size: 24px;
 }
+.coffeeQSearch:hover{
+    cursor:pointer;
+}
 
 /* -------------About Us------------- */
 .aboutUsBox{
