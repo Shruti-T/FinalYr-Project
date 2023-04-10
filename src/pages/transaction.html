@@ -29,9 +29,7 @@
                         Profile
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                        </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li id="profileWalletId"><a href="#"><i class="fa fa-user fa-fw"></i>Wallet Id</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -51,9 +49,6 @@
                     </li>
                     <li>
                         <a  href="form.html"> Forms </a>
-                    </li>
-                    <li>
-                        <a href="analysis.html"> Analysis Page</a>
                     </li>
                 </ul>
             </div>
@@ -152,7 +147,7 @@
                         </label>
                         <button type="button" onclick="getValue()">Get Value</button>
                     </div> -->
-                    <div> <a href="./Sales Report.xlsx" download>Download Sales Report</a></div>
+                    <!-- <div> <a href="./Sales Report.xlsx" download>Download Sales Report</a></div> -->
                     <!--End Advanced Tables -->
                 </div>
             </div>
@@ -171,8 +166,13 @@
         },
         rootEl: document.getElementById("alan-btn"),
     });
+    // if (ethereum.isConnected()) {
+    //     document.body.innerHTML ="401:- Unauthorised Login!, Please Login to access dashBoard.";
+    // }
     </script>
+
     <script type="text/javascript" src="../js/home.js"></script>
+    <script type="text/javascript" src="../js/dashboard.js"></script>
 
     <script
         type="text/javascript"

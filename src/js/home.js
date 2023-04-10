@@ -1007,20 +1007,14 @@ let account;
 const connectMetamask = async () => {
   if (window.ethereum !== "undefined") {
     const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    console.log(accounts);
+    // console.log(accounts);
     account = accounts[0];
-    const data = readContract();
+    const data = farmerLogin(account);
     if (data) {
-      window.location.href = "/src/pages/index.html";
+      window.location.href = `/src/pages/index.html`;
     }
-    // document.getElementById("accountArea").innerHTML = account;
   }
 };
-
-// // 1.b) logout from smart contract
-// const logoutMetaMask = async () => {
-//   await ethereum.request({ method: "eth_requestAccounts" });
-// };
 
 //2- connect to smart contract
 const connectContract = async () => {
@@ -1032,10 +1026,7 @@ const connectContract = async () => {
 };
 
 //3) read value from smart contract
-const readContract = async () => {
-  const data = await window.contract.methods
-    .isFarmer("0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6")
-    .call();
-  // document.getElementById("dataArea").innerHTML = data;
+const farmerLogin = async (account) => {
+  const data = await window.contract.methods.isFarmer(account).call();
   return data;
 };
