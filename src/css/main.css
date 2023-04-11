@@ -363,4 +363,11 @@
     text-decoration: underline;
     color: #fff;
 }
-  
+
+/* ---------distributer form-------- */
+.quality{
+    padding-top: 40px;
+    font-size: 15px;
+    margin-left: 12px;
+    font-weight: 700;
+}
