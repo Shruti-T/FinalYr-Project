@@ -1,4 +1,12 @@
 async function onInit() {
+  let wallet = document.getElementById("profileWalletId").innerHTML;
+  if (
+    !ethereum.isConnected() &&
+    (wallet == "Wallet Id" || wallet == "undefined")
+  ) {
+    document.body.innerHTML =
+      "401:- Unauthorised Login!, Please Login to access dashBoard.";
+  }
   await window.ethereum.enable();
   const accounts = await window.ethereum.request({
     method: "eth_requestAccounts",
