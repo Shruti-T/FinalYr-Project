@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DezChain</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../css/main.css" rel="stylesheet" />
+    <link href="../js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="../css/custom-styles.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="../img/logo.png">
+    <link rel="icon" href="../img/logo.png">
+</head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">DezChain</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        <!-- <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i> -->
+                        Profile
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li id="profileWalletId"><a href="#"><i class="fa fa-user fa-fw"></i>Wallet Id</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a href="index.html"> Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="transaction.html">Your Transactions</a>
+                    </li>
+                    <li>
+                        <a class="active-menu"  href="form.html"> Forms </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper" >
+            <div id="page-inner">
+			    <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-header">
+                            Distributor Form <small>Fill in the details.</small>
+                        </h1>
+                    </div>
+                </div> 
+                <div id="google_translate_element"></div>
+              <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Check the quality of crop!
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                              <form role="form"></form>
+                                  <div class="col-lg-6">
+                                    
+                                    <div class="form-group">
+                                        <label>Distributor Name</label>
+                                        <input class="form-control" placeholder="....">
+                                    </div>
+                                      <div class="form-group">
+                                          <label>Quantity of coffee to sell (kg's)</label>
+                                          <input class="form-control" placeholder="....">
+                                      </div>
+
+                                      
+
+
+                                </div>
+                                <!-- /.col-lg-6 (nested) -->
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                      <label>Cost (ETH/INR)</label>
+                                      <input class="form-control" placeholder="....">
+                                    </div>
+                                    <div class="form-group">
+                                      <label>Wallet ID</label>
+                                      <input class="form-control" placeholder="....">
+                                  </div>
+                                  
+                                </div>
+                                <br><br>
+                                <br><br>
+                                <h4 class="quality">Quality Parameters</h4> 
+                                <div class="col-lg-4">
+                                  <div class="form-group">
+                                    <label>Aroma</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Flavor</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Affernate</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Acidity</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Body</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                </div>
+                                <div class="col-lg-4">
+                                  <div class="form-group">
+                                    <label>Balance</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Uniformity</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Clean up</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Sweetness</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Cupper Points</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                </div>
+                                <div class="col-lg-4">
+                                  <div class="form-group">
+                                    <label>Moisture</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Quakers</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Cateogory One Defects</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Cateogory Two Defects</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                  <div class="form-group">
+                                    <label>Attitude Mean meters</label>
+                                    <input class="form-control" placeholder="....">
+                                  </div>
+                                </div>
+                                <div class="col-lg-6">
+                                  <button type="submit" class="btn btn-default">Submit Button</button>
+                                  <button type="reset" class="btn btn-default">Reset Button</button>
+                                </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <script type="text/javascript" src="https://studio.alan.app/web/lib/alan_lib.min.js"></script>
+    <script type="text/javascript" src="../js/dashboard.js"></script>
+    <script>
+    var alanBtnInstance = alanBtn({
+        key: "9eb341ce092c2ca14436bd1253caa3b52e956eca572e1d8b807a3e2338fdd0dc/stage",
+        onCommand: function (commandData) {
+        if (commandData.command === "go:back") {
+            //call client code that will react on the received command
+        }
+        },
+        rootEl: document.getElementById("alan-btn"),
+    });
+    // if (ethereum.isConnected()) {
+    //     document.body.innerHTML ="401:- Unauthorised Login!, Please Login to access dashBoard.";
+    // }
+    </script>
+    <script type="text/javascript" src="../js/home.js"></script>
+    <script
+        type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+    <script src="../js/jquery-1.10.2.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.metisMenu.js"></script>
+    <script src="../js/custom-scripts.js"></script>
+</body>
+</html>
