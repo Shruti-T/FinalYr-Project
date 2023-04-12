@@ -1009,14 +1009,19 @@ const connectMetamask = async () => {
     const accounts = await ethereum.request({ method: "eth_requestAccounts" });
     // console.log(accounts);
     account = accounts[0];
-    const data = farmerLogin(account);
-    if (data) {
-      window.location.href = `/src/pages/index.html`;
+    const data1 = farmerLogin(account);
+    const data2 = distributerLogin(account);
+    if (data2) {
+      window.location.href = `/src/pages/distributer.html`;
+    } else if (data1) {
+      window.location.href = `/src/pages/farmer.html`;
+    } else {
+      window.location.href = `/src/pages/main.html`;
     }
   }
 };
 
-//2- connect to smart contract
+//2- connect to farmer smart contract
 const connectContract = async () => {
   const Address = FARMER_CONTRACT_ADDRESS;
   window.web3 = await new Web3(window.ethereum);
@@ -1025,8 +1030,80 @@ const connectContract = async () => {
     "connected to smart contract";
 };
 
+//2- connect to distributer smart contract
+const connectContract2 = async () => {
+  const Address = DISTRIBUTOR_CONTRACT_ADDRESS;
+  window.web3 = await new Web3(window.ethereum);
+  window.contract = await new window.web3.eth.Contract(
+    DISTRIBUTOR_ABI,
+    Address
+  );
+  document.getElementById("contractArea").innerHTML =
+    "connected to smart contract2";
+};
+
 //3) read value from smart contract
 const farmerLogin = async (account) => {
+  const Address = FARMER_CONTRACT_ADDRESS;
+  window.web3 = await new Web3(window.ethereum);
+  window.contract = await new window.web3.eth.Contract(FARMER_ABI, Address);
   const data = await window.contract.methods.isFarmer(account).call();
   return data;
 };
+
+//3) read value from smart contract 2
+const distributerLogin = async (account) => {
+  const Address = DISTRIBUTOR_CONTRACT_ADDRESS;
+  window.web3 = await new Web3(window.ethereum);
+  window.contract = await new window.web3.eth.Contract(
+    DISTRIBUTOR_ABI,
+    Address
+  );
+  const data = await window.contract.methods.isDistributor(account).call();
+  return data;
+};
+
+// -------------------------------------------TESTING------------------------------------------------
+const distributer = async () => {
+  const Address = DISTRIBUTOR_CONTRACT_ADDRESS;
+  window.web3 = await new Web3(window.ethereum);
+  window.contract = await new window.web3.eth.Contract(
+    DISTRIBUTOR_ABI,
+    Address
+  );
+  const data = await window.contract.methods
+    .isDistributor("0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6")
+    .call();
+  console.log("dis", data);
+};
+
+distributer();
+
+const farmer = async () => {
+  const Address = FARMER_CONTRACT_ADDRESS;
+  window.web3 = await new Web3(window.ethereum);
+  window.contract = await new window.web3.eth.Contract(FARMER_ABI, Address);
+  const data = await window.contract.methods
+    .isFarmer("0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6")
+    .call();
+  console.log(data);
+};
+
+farmer();
+
+// const retail = async () => {
+//   const Address = RETAILER_CONTRACT_ADDRESS;
+//   window.web3 = await new Web3(window.ethereum);
+//   window.contract = await new window.web3.eth.Contract(RETAILER_ABI, Address);
+//   const data = await window.contract.methods
+//     .isRetailer("0x44D2431899bDe95Cc922703340f2EA9D7086d2C7")
+//     .call();
+//   console.log("retail", data);
+// };
+
+// retail();
+
+// account (admin)= 0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515
+// tiwari (farmer)= 0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6
+//distri = 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
+// retail= 0x44D2431899bDe95Cc922703340f2EA9D7086d2C7
