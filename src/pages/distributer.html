@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DezChain</title>
+    <link href="../css/bootstrap.css" rel="stylesheet" />
+    <link href="../js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+    <link href="../css/custom-styles.css" rel="stylesheet" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">DezChain</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                        Profile
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li id="profileWalletId"><a href="#"><i class="fa fa-user fa-fw"></i>Wallet Id</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" data-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" data-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false"> Your Transactions</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" data-target="#v-pills-messages" type="button" role="tab" aria-controls="v-pills-messages" aria-selected="false"> Forms </a>
+                    </li>
+                    <div id="google_translate_element"></div>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="tab-content" id="v-pills-tabContent">
+                    <div class="tab-pane fade active in" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="page-header">
+                                    Dashboard <small>Summary of your App</small>
+                                </h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="panel panel-primary text-center no-boder bg-color-green">
+                                    <div class="panel-body">
+                                        <i class="fa fa-bar-chart-o fa-5x"></i>
+                                        <h3>10.24 Million</h3>
+                                    </div>
+                                    <div class="panel-footer back-footer-green">
+                                        Coffee Exports
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="panel panel-primary text-center no-boder bg-color-blue">
+                                    <div class="panel-body">
+                                        <i class="fa fa-shopping-cart fa-5x"></i>
+                                        <h3>115,000 MT</h3>
+                                    </div>
+                                    <div class="panel-footer back-footer-blue">
+                                        Consumption in India
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="panel panel-primary text-center no-boder bg-color-red">
+                                    <div class="panel-body">
+                                        <i class="fa fa fa-comments fa-5x"></i>
+                                        <h3>164,108 MT</h3>
+                                    </div>
+                                    <div class="panel-footer back-footer-red">
+                                        Exports from India
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="panel panel-primary text-center no-boder bg-color-brown">
+                                    <div class="panel-body">
+                                        <i class="fa fa-users fa-5x"></i>
+                                        <h3>101,500 MT</h3>
+                                    </div>
+                                    <div class="panel-footer back-footer-brown">
+                                        Arabica Production
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9 col-sm-12 col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Coffee Production (in million tones) in 4 different countries
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="morris-bar-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12 col-xs-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Profit Distribution (%)
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="morris-donut-chart"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    Check Out the market!
+                                </div> 
+                                <div class="panel-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Sr.No.</th>
+                                                    <th>Name</th>
+                                                    <th>Unit bags</th>
+                                                    <th>Price (eth)</th>
+                                                    <th>Status</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td>John</td>
+                                                    <td>30</td>
+                                                    <td>0.001</td>
+                                                    <td><div class="forSale">For Sale</div></td>
+                                                    <td><a href="#">Buy</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Anna</td>
+                                                    <td>50</td>
+                                                    <td>0.005</td>
+                                                    <td><div class="soldBatch">Sold</div></td>
+                                                    <td><a href="#" class="soldAction">Buy</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Mathew</td>
+                                                    <td>50</td>
+                                                    <td>0.003</td>
+                                                    <td><div class="forSale">For Sale</div></td>
+                                                    <td><a href="#">Buy</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>Ram</td>
+                                                    <td>20</td>
+                                                    <td>0.003</td>
+                                                    <td><div class="forSale">For Sale</div></td>
+                                                    <td><a href="#">Buy</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>Tony</td>
+                                                    <td>60</td>
+                                                    <td>0.005</td>
+                                                    <td><div class="soldBatch">Sold</div></td>
+                                                    <td><a href="#" class="soldAction">Buy</a></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>Austin</td>
+                                                    <td>80</td>
+                                                    <td>0.01</td>
+                                                    <td><div class="forSale">For Sale</div></td>
+                                                    <td><a href="#">Buy</a></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="page-header">
+                                    Transactions <small>Find Your History.</small>
+                                </h1>
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        Advanced Tables
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-striped table-bordered table-hover" id="dataTables">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Transaction ID</th>
+                                                        <th>To</th>
+                                                        <th>From</th>
+                                                        <th>Cost(eth)</th>
+                                                        <th>Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr id="1">
+                                                        <td>247915bd-9535-44de-b3e7-f2248e8ebfe4</td>
+                                                        <td>Austin</td>
+                                                        <td>You</td>
+                                                        <td class="center">0.005</td>
+                                                        <td class="center" id="ss">17/6/2022</td>
+                                                    </tr>
+                                                    <tr id="2">
+                                                        <td>81f67b24-a642-11ed-aeb2-af87d8ff0b2f</td>
+                                                        <td>Tony</td>
+                                                        <td>You</td>
+                                                        <td class="center">0.002</td>
+                                                        <td class="center" id="sss">4/2/2023</td>
+                                                    </tr>
+                                                    <tr id="3">
+                                                        <td>81f67b23-a642-11ed-aeb2-af87d8ff0b2f</td>
+                                                        <td>You</td>
+                                                        <td>Vinit</td>
+                                                        <td class="center">0.0004</td>
+                                                        <td class="center" id="ssss">12/11/2022</td>
+                                                    </tr>
+                                                    <tr id="4">
+                                                        <td>81f67b21-a642-11ed-aeb2-af87d8ff0b2f</td>
+                                                        <td>Raphael</td>
+                                                        <td>You</td>
+                                                        <td class="center">0.01</td>
+                                                        <td class="center" id="sssss">09/10/2022</td>
+                                                    </tr>
+                                                    <tr id="5">
+                                                        <td>81f67b21-a642-11ed-aeb2fef-af87d8fb2a</td>
+                                                        <td>Tanoy</td>
+                                                        <td>You</td>
+                                                        <td class="center">0.003</td>
+                                                        <td class="center" id="sssssss">15/3/2022</td>
+                                                    </tr>
+                                                    <tr id="6">
+                                                        <td>81f67b21-a642-11ed-aeb2-af87d8ff0bsdd</td>
+                                                        <td>Hariprasad</td>
+                                                        <td>You</td>
+                                                        <td class="center">0.004</td>
+                                                        <td class="center" id="ssssssss">20/12/2022</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h1 class="page-header">
+                                    Distributor Form <small>Fill in the details.</small>
+                                </h1>
+                            </div>
+                        </div> 
+                        <div class="row">
+                              <div class="col-lg-12">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          Check the quality of crop!
+                                      </div>
+                                      <div class="panel-body">
+                                          <div class="row">
+                                            <form role="form">
+                                                <div class="col-lg-6">
+                                                    <div class="form-group">
+                                                        <label>Distributor Name</label>
+                                                        <input class="form-control" placeholder="....">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Quantity of coffee to sell (kg's)</label>
+                                                        <input class="form-control" placeholder="....">
+                                                    </div>
+                                                </div>
+                                              <div class="col-lg-6">
+                                                  <div class="form-group">
+                                                    <label>Cost (ETH/INR)</label>
+                                                    <input class="form-control" placeholder="....">
+                                                  </div>
+                                                  <div class="form-group">
+                                                    <label>Wallet ID</label>
+                                                    <input class="form-control" placeholder="....">
+                                                    </div>
+                                              </div>
+                                              
+                                              <br><br>
+                                              <br><br>
+                                              <h4 class="quality">Quality Parameters</h4> 
+                                              <div class="col-lg-4">
+                                                <div class="form-group">
+                                                  <label>Aroma</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Flavor</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Affernate</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Acidity</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Body</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                              </div>
+                                              <div class="col-lg-4">
+                                                <div class="form-group">
+                                                  <label>Balance</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Uniformity</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Clean up</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Sweetness</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Cupper Points</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                              </div>
+                                              <div class="col-lg-4">
+                                                <div class="form-group">
+                                                  <label>Moisture</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Quakers</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Cateogory One Defects</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Cateogory Two Defects</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label>Attitude Mean meters</label>
+                                                  <input class="form-control" placeholder="....">
+                                                </div>
+                                              </div>
+                                              <div class="col-lg-6">
+                                                <button type="submit" class="btn btn-default">Submit Button</button>
+                                                <button type="reset" class="btn btn-default">Reset Button</button>
+                                              </div>
+                                            </form>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>      
+    </div>
+    <script type="text/javascript" src="https://studio.alan.app/web/lib/alan_lib.min.js"></script> 
+    <script>
+        var alanBtnInstance = alanBtn({
+            key: "9eb341ce092c2ca14436bd1253caa3b52e956eca572e1d8b807a3e2338fdd0dc/stage",
+            onCommand: function (commandData) {
+            if (commandData.command === "go:back") {
+            }
+            },
+            rootEl: document.getElementById("alan-btn"),
+        });
+
+    </script>
+    <script
+        type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+    </script>
+    <script type="text/javascript" src="../js/home.js"></script>
+    <script type="text/javascript" src="../js/dashboard.js"></script>
+    
+    <script src="../js/jquery-1.10.2.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.metisMenu.js"></script>
+    <script src="../js/morris/raphael-2.1.0.min.js"></script>
+    <script src="../js/morris/morris.js"></script>
+    <script src="../js/custom-scripts.js"></script>
+</body>
+</html>
