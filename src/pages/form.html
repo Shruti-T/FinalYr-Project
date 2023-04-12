@@ -26,7 +26,6 @@
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <!-- <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i> -->
                         Profile
                     </a>
                     <ul class="dropdown-menu dropdown-user">
@@ -65,95 +64,90 @@
                 </div> 
                 <div id="google_translate_element"></div>
                 <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Check the quality of crop!
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <form role="form">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Check the quality of crop!
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label>Type of Coffee</label>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Arabica
+                                                    </label>
+                                                </div>
+                                                <div class="radio">
+                                                    <label>
+                                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Robusta
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Cost of goods</label>
+                                                <input class="form-control" placeholder="Pesticides + Seeds + Fertilizers">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Charge Per bag of 10kg (eth)</label>
+                                                <input class="form-control" placeholder="0.001">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>No.of bags</label>
+                                                <input class="form-control" placeholder="10">
+                                            </div>
+                                            <button type="submit" class="btn btn-default">Submit Button</button>
+                                            <button type="reset" class="btn btn-default">Reset Button</button>
+                                        </form>
+                                    </div>
+                                    <div class="col-lg-6">
                                         <div class="form-group">
-                                            <label>Type of Coffee</label>
+                                            <label for="harvestDate">Harvest Date:</label>
+                                            <input type="date" id="harvestDate" name="harvestDate">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Phase</label>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Arabica
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Harvested
                                                 </label>
                                             </div>
                                             <div class="radio">
                                                 <label>
-                                                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Robusta
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Processed
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Packed
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label>Cost of goods</label>
-                                            <input class="form-control" placeholder="Pesticides + Seeds + Fertilizers">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>Charge Per bag of 10kg (eth)</label>
-                                            <input class="form-control" placeholder="0.001">
-                                        </div>
-                                        <div class="form-group">
-                                            <label>No.of bags</label>
-                                            <input class="form-control" placeholder="10">
-                                        </div>
-
-
-
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
-                                    </form>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <label for="harvestDate">Harvest Date:</label>
-                                        <input type="date" id="harvestDate" name="harvestDate">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Phase</label>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">Harvested
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Processed
-                                            </label>
-                                        </div>
-                                        <div class="radio">
-                                            <label>
-                                                <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Packed
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Fertilizers</label>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">Nitrogen
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">Phosphorus
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" value="">Potassium
-                                            </label>
+                                            <label>Fertilizers</label>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="">Nitrogen
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="">Phosphorus
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" value="">Potassium
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
