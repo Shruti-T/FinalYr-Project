@@ -21,7 +21,8 @@ async function onInit() {
   });
 }
 
-onInit();
+// onInit();
+
 // if (!ethereum.isConnected()) {
 //     document.body.innerHTML =
 //       "401:- Unauthorised Login!, Please Login to access dashBoard.";
