@@ -1084,26 +1084,40 @@ const distributerLogin = async (account) => {
 //   window.web3 = await new Web3(window.ethereum);
 //   window.contract = await new window.web3.eth.Contract(FARMER_ABI, Address);
 //   const data = await window.contract.methods
-//     .isFarmer("0x44D2431899bDe95Cc922703340f2EA9D7086d2C7")
+//     .isFarmer("0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc")
 //     .call();
 //   console.log(data);
 // };
 
 // farmer();
 
-const retail = async () => {
-  const Address = RETAILER_CONTRACT_ADDRESS;
-  window.web3 = await new Web3(window.ethereum);
-  window.contract = await new window.web3.eth.Contract(RETAILER_ABI, Address);
-  const data = await window.contract.methods
-    .isRetailer("0x44D2431899bDe95Cc922703340f2EA9D7086d2C7")
-    .call();
-  console.log("retail", data);
-};
+// const retail = async () => {
+//   const Address = RETAILER_CONTRACT_ADDRESS;
+//   window.web3 = await new Web3(window.ethereum);
+//   window.contract = await new window.web3.eth.Contract(RETAILER_ABI, Address);
+//   const data = await window.contract.methods
+//     .isRetailer("0x44D2431899bDe95Cc922703340f2EA9D7086d2C7")
+//     .call();
+//   console.log("retail", data);
+// };
 
-retail();
+// retail();
 
 // account (admin)= 0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515
 // tiwari (farmer)= 0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6
 //distri = 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
 // retail= 0x44D2431899bDe95Cc922703340f2EA9D7086d2C7
+
+const apiKey = "6IS3MJPANXX6WVPNHRBZIT5B2EBPN1MZ61";
+const address = "0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515";
+
+const url = `https://api-goerli.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&sort=asc&apikey=${apiKey}`;
+
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data.result);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
