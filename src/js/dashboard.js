@@ -30,3 +30,28 @@ onInit();
 //     document.body.innerHTML =
 //       "401:- Unauthorised Login!, Please Login to access dashBoard.";
 //   }
+const apiKey = "6IS3MJPANXX6WVPNHRBZIT5B2EBPN1MZ61";
+const address = "0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515";
+
+const url = `https://api-goerli.etherscan.io/api?module=account&action=txlist&address=${address}&startblock=0&endblock=99999999&sort=asc&apikey=${apiKey}`;
+
+fetch(url)
+  .then((response) => response.json())
+  .then((data) => {
+    console.log(data.result);
+    let oldTran = data.result;
+    let table = document.getElementById("transaction");
+    for (let i = 0; i <= oldTran.length; i++) {
+      var row = document.createElement("tr");
+      let to = oldTran[i].to;
+      let blockHash = oldTran[i].blockHash;
+      let from = oldTran[i].from;
+      let timeStamp = oldTran[i].timeStamp;
+      let html = `<td>${blockHash}</td><td>${to}</td><td>${from}</td><td>${timeStamp}</td>`;
+      row.innerHTML = html;
+      table.appendChild(row);
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+  });
