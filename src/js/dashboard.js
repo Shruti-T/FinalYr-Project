@@ -43,11 +43,7 @@ fetch(url)
     let table = document.getElementById("transaction");
     for (let i = 0; i <= oldTran.length; i++) {
       var row = document.createElement("tr");
-      let to = oldTran[i].to;
-      let blockHash = oldTran[i].blockHash;
-      let from = oldTran[i].from;
-      let timeStamp = oldTran[i].timeStamp;
-      let html = `<td>${blockHash}</td><td>${to}</td><td>${from}</td><td>${timeStamp}</td>`;
+      let html = `<td>${oldTran[i].blockHash}</td><td>${oldTran[i].to}</td><td>${oldTran[i].from}</td><td>${oldTran[i].timeStamp}</td>`;
       row.innerHTML = html;
       table.appendChild(row);
     }
