@@ -8,6 +8,9 @@
     <link href="../css/bootstrap.css" rel="stylesheet" />
     <link href="../js/morris/morris-0.4.3.min.css" rel="stylesheet" />
     <link href="../css/custom-styles.css" rel="stylesheet" />
+    <link href="../css/main.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
 
 </head>
@@ -327,13 +330,27 @@
                                                     </div>
                                                     </div>
                                                     <div class="col-lg-6">
-                                                    <button type="submit" class="btn btn-default">Get Quality</button>
+                                                    <button type="button" id="qualityCheckBtn" class="btn btn-default">Get Quality</button>
                                                     <button type="reset" class="btn btn-default">Reset Button</button>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="card mb-3 border border-secondary qualityCard" id="qualCard">
+                                        <div class="row g-0">
+                                          <div class="col-md-4">
+                                            <img src="../img/goodQual.png" class=" img-responsive rounded-start" id="qualImg" alt="...">
+                                          </div>
+                                          <div class="col-md-8 ">
+                                            <div class="card-body">
+                                              <h4 class="card-title" id="qualType">Quality Type</h4>
+                                              <p class="card-text" id="qualUsage">Usage of this type</p>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </div>
+                                    <br>
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
                                             Sell Your Processed Crop!

@@ -294,3 +294,8 @@
     text-decoration: underline;
     color: #fff;
 }
+/* ----------dashboard quality card for distributer ---------*/
+
+.qualityCard{
+    max-width: 540px; border-style: double;
+}

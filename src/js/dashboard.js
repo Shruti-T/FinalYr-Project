@@ -30,6 +30,7 @@ onInit();
 //     document.body.innerHTML =
 //       "401:- Unauthorised Login!, Please Login to access dashBoard.";
 //   }
+
 const apiKey = "6IS3MJPANXX6WVPNHRBZIT5B2EBPN1MZ61";
 const address = "0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515";
 
@@ -65,3 +66,57 @@ fetch(url)
   .catch((error) => {
     console.error(error);
   });
+
+// 0--------quality check
+
+// let mlurl = `https://python-public-api-production.up.railway.app/?my_dict={%22aroma%22:8.67,%22Flavor%22:8.83,%22Aftertaste%22:8.6,%22Acidity%22:8.75,%22Body%22:8.5,%22Balance%22:8.42,%22Uniformity%22:10.0,%22Clean.Cup%22:10.0,%22Sweetness%22:10.0,%22Cupper.Points%22:8.75,%22Moisture%22:0.12,%22Quakers%22:0.0,%22Category.One.Defects%22:0.0,%22Category.Two.Defects%22:0,%22altitude_mean_meters%22:2075.0}`;
+
+// fetch(mlurl, { mode: "no-cors" })
+//   .then((data) => {
+//     console.log("---------------");
+//     console.log(data);
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+// const mlurl = `https://python-public-api-production.up.railway.app/?my_dict={%22aroma%22:8.67,%22Flavor%22:8.83,%22Aftertaste%22:8.6,%22Acidity%22:8.75,%22Body%22:8.5,%22Balance%22:8.42,%22Uniformity%22:10.0,%22Clean.Cup%22:10.0,%22Sweetness%22:10.0,%22Cupper.Points%22:8.75,%22Moisture%22:0.12,%22Quakers%22:0.0,%22Category.One.Defects%22:0.0,%22Category.Two.Defects%22:0,%22altitude_mean_meters%22:2075.0}`;
+// // let out = 0;
+// fetch(mlurl, { mode: "no-cors" })
+//   // .then((response) => response.json())
+//   .then((data) => {
+//     console.log("---------sssssssssss------");
+//     const val = data;
+//     console.log(data);
+//     console.log(`this ${val} and ${typeof val}`);
+//     // out = val;
+//   })
+//   .catch((error) => {
+//     console.error(error);
+//   });
+
+document.getElementById("qualCard").style.display = "none";
+
+document.getElementById("qualityCheckBtn").addEventListener("click", () => {
+  let qualityEstimated = 90.22;
+  document.getElementById("qualCard").style.display = "block";
+  let image = document.getElementById("qualImg");
+  let heading = document.getElementById("qualType");
+  let info = document.getElementById("qualUsage");
+  if (qualityEstimated >= 90) {
+    image.src = "../img/LuxQual.png";
+    heading.innerHTML = "Luxury Quality";
+    info.innerHTML =
+      "Exceptionally rare specialty coffee , which is considered outstanding and has the boldest taste notes, hence is also considered a luxury coffee.";
+  } else if (qualityEstimated < 90 && qualityEstimated >= 80) {
+    image.src = "../img/goodQual.png";
+    heading.innerHTML = "Good Quality";
+    info.innerHTML =
+      "Standard specialty coffee, more commercially available and comparatively cheaper.";
+  } else {
+    image.src = "../img/MediocQaul.png";
+    heading.innerHTML = "Mediocre Quality";
+    info.innerHTML =
+      "Non specialty coffee, often categorized as commercial coffee or the instant coffee which is available in the markets.";
+  }
+});
