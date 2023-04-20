@@ -41,21 +41,26 @@ fetch(url)
     console.log(data.result);
     let oldTran = data.result;
     let table = document.getElementById("transaction");
-    console.log(oldTran);
-    for (let i = 0; i <= oldTran.length; i++) {
-      var row = document.createElement("tr");
-      const date = new Date(oldTran[i].timeStamp * 1000);
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1; // January is 0
-      const day = date.getDate();
-      const hours = date.getHours();
-      const minutes = date.getMinutes();
-      const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-
-      let html = `<td>${oldTran[i].blockHash}</td><td>${oldTran[i].to}</td><td>${oldTran[i].from}</td><td>${oldTran[i].gasUsed}</td><td>${formattedDate}</td>`;
-      row.innerHTML = html;
-      table.appendChild(row);
+    // console.log(oldTran);
+    for (let i = 0; i <= oldTran.length - 1; i++) {
+      if (oldTran[i].to != "") {
+        let x = oldTran[i].timeStamp;
+        const date = new Date(x * 1000);
+        const year = date.getFullYear();
+        const month = date.getMonth() + 1; // January is 0
+        const day = date.getDate();
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+        let row = document.createElement("tr");
+        let html = `<td>${oldTran[i].blockHash}</td><td>${oldTran[i].to}</td><td>${oldTran[i].from}</td><td>${oldTran[i].gasUsed}</td><td>${formattedDate}</td>`;
+        row.innerHTML = html;
+        table.appendChild(row);
+      }
     }
+
+    let element = document.getElementsByTagName("td");
+    element.classList.add("text-truncate");
   })
   .catch((error) => {
     console.error(error);
