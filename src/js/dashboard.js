@@ -98,7 +98,7 @@ fetch(url)
 document.getElementById("qualCard").style.display = "none";
 
 document.getElementById("qualityCheckBtn").addEventListener("click", () => {
-  let qualityEstimated = 90.22;
+  let qualityEstimated = 50.22;
   document.getElementById("qualCard").style.display = "block";
   let image = document.getElementById("qualImg");
   let heading = document.getElementById("qualType");
