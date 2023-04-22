@@ -348,10 +348,43 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
       // emit the appropriate event
       emit Sold(_upc);
     }
+  
+  mapping (address => uint256) private balance;
 
+  // Account Balance
+  function getBalance(address account) public view returns (uint256) {
+    SupplyChain.getBalance(msg.sender);
+    return account.balance;
+  }
 
+  function deposit(address account, uint256 amount) public {
+        // Check that the amount is greater than zero
+        require(amount > 0, "Amount must be greater than zero");
 
+        // Update the account balance
+        balance[account] += amount;
 
+        // Emit an event to indicate the deposit
+        emit Deposit(account, amount);
+    }
+  event Deposit(address indexed account, uint256 amount);
+
+  function withdraw(address account,uint256 amount) public {
+        // Check that the sender has enough balance to withdraw
+        require(balance[msg.sender] >= amount, "Insufficient balance");
+
+        // Decrement the sender's balance with the amount withdrawn
+        balance[msg.sender] -= amount;
+
+        // Transfer the withdrawn amount to the sender's address
+        msg.sender.transfer(amount);
+
+        // Emit an event to indicate the withdrawal
+        emit Withdraw(account, amount);
+  }
+  event Withdraw(address indexed account, uint256 amount);
+  
+  
 
   // Define a function 'shipItem' that allows the distributor to mark an item 'Shipped'
   // Use the above modifers to check if the item is sold
