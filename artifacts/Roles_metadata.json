@@ -1,0 +1,47 @@
+{
+	"compiler": {
+		"version": "0.7.4+commit.3f05b770"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"details": "Library for managing addresses assigned to a Role.",
+			"kind": "dev",
+			"methods": {},
+			"title": "Roles",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"hardhat\\contracts\\chainRoles\\Roles.sol": "Roles"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"hardhat\\contracts\\chainRoles\\Roles.sol": {
+			"keccak256": "0x8278edc1a660ad6ebf7913936e453c752b48bb2a63ff86b350e850e012973f9d",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4b7d8cb29637c008a5116331127402fcfbcdee757d2892dee63db3707cefa0cd",
+				"dweb:/ipfs/QmYMG6XN5PzPyDNkuWUPyzzWQqjKB94MD4p3H5ApnGjwAe"
+			]
+		}
+	},
+	"version": 1
+}
