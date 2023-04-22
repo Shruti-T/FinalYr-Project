@@ -296,7 +296,7 @@ export const CONSUMER_ABI = [
 
 
 
-export const SUPPLYCHAIN_CONTRACT_ADDRESS = "0x4a2fd11fc990c11e88d597c5751caf127a7281";
+export const SUPPLYCHAIN_CONTRACT_ADDRESS = "0x4a2fd11fc990c11e88d597c5751caf127a72810d";
 export const SUPPLYCHAIN_ABI = [
   {
     "inputs": [],
