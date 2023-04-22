@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<hmtl>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous"
+        />
+        <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+        />
+
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Mate+SC&family=Open+Sans&display=swap" rel="stylesheet">
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+        <link href="../css/main.css" rel="stylesheet" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+
+        <title>
+            Dezchain
+        </title>
+    </head>
+    <body class="mainHome">
+        <nav class="navbar navbar-expand-lg" id="nav">
+            <button
+              class="navbar-toggler navbar-light ml-auto"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarTogglerDemo02"
+              aria-controls="navbarTogglerDemo02"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon nav-button"></span>
+            </button>
+      
+            <div class="collapse navbar-collapse ml-3" id="navbarTogglerDemo02">
+              <!-- <div class="container"> -->
+                <a class="navbar-brand" href="#">
+                  <img src="../img/2.png" alt="Bootstrap" class="navLogo">
+                </a>
+              <!-- </div> -->
+              <ul class="navbar-nav mt-2 mt-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link nav-text px-2" href="#aboutUs">About Us</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-text px-2" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-text px-2" href="#skills">Benefits</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link nav-text px-2" href="#contact">Contact</a>
+                </li>
+              </ul>
+            </div>
+        </nav>
+
+        <div class="parallax">
+            <div class="parallax-background"></div>
+            <div class="parallax-content">
+              <div class="container mt-5 pt-4">
+                <h2 class="d-flex justify-content-center text-uppercase mainHeader">DezChain</h2>
+                <p class="d-flex justify-content-center">Clarity with a cup of coffee!</p>
+                <div class="input-group container coffeeidInput d-flex justify-content-center">
+                    <input type="text" class="form-control coffeeBatchId" placeholder="Your coffee batch ID...">
+                    <span class="input-group-text"><box-icon name='search-alt-2' animation='tada' class="bx-xs coffeeQSearch"></box-icon></span>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <div class="container my-5 px-md-5 aboutUsBox" id="aboutUs">
+            <h2 class="d-flex justify-content-center text-uppercase mainHeader aboutTitle">About Us</h2>
+            <p class="d-flex justify-content-center pt-5 container px-5">
+              Dezchain, short name for Decentralized Chain. An improved supply chain network and a marketplace for coffee, Dezchain uses Blockchain technology, a new age tech to increase traceability, accountability and security amongst the stakeholders of the coffee supply chain. 
+              All transactions on Dezchain platform are Ethereum (most stable crypto currency) based. A very simple, understandable and a multilingual UI with voice support, Dezchain is designed to give every user a sense of comfort and security that they need in a marketplace. 
+            </p>
+            <img src="../img/beans.png" class="img-responsive aboutUsImg">
+        </div>
+
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-sm">
+              <div class="card marketCards" >
+                <img src="../img/middle.png" class="card-img-top p-3 marketImg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Cost: 366.7 Rs/kg</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="card marketCards" >
+                <img src="../img/middle0.png" class="card-img-top p-3 marketImg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Production: 3,60,500 MT</h5>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="card marketCards" >
+                <img src="../img/middle2.jpg" class="card-img-top p-3 marketImg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Consumption: 2,32,400 MT</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container my-3 serviceContainer" id="services">
+            <div class="container my-5">
+                <h2 class="d-flex justify-content-center text-uppercase mainHeader">Services</h2>
+                <p class="d-flex justify-content-center">
+                  Metamask is a browser extension that allows users to interact with the Ethereum blockchain and decentralized applications (dApps) built on the Ethereum network. 
+                  It provides a secure and user-friendly interface for managing Ethereum wallets, sending and receiving Ether and ERC-20 tokens, and interacting with smart contracts.
+                  To Login and access our services make sure you have metamask installed in your browser! 
+                  <p class="stepsModal" data-toggle="modal" data-target="#exampleModal">Check Out the steps!</p>
+                </p>
+            </div>
+            <div class="row mb-4">
+                <div class="col-sm-4">
+                    <div class="flip-box">
+                        <div class="flip-box-inner">
+                          <div class="flip-box-front">
+                            <img src="../img/coffeefarmer.jpeg" class="img-responsive serviceImg" alt="Image">
+                          </div>
+                          <div class="flip-box-back" height="300px">
+                            <h2>Farmer</h2>
+                            <p>manages the coffee holdings or plantations, planting and cultivating coffee plants, harvesting, processing the cherry beans, sending the ready and cleaned beans to the roasting agencies or distributors</p>
+                          </div>
+                        </div>
+                    </div>
+                    <p>
+                      <div class="container d-flex justify-content-center">
+                        <button class="loginBtn" onclick="connectMetamask()">Farmer Login</button> 
+                      </div>
+                    </p>
+                </div>
+                <div class="col-sm-4"> 
+                    <div class="flip-box">
+                        <div class="flip-box-inner">
+                          <div class="flip-box-front">
+                            <img src="../img/coffeeRoast.jpg" class="img-responsive serviceImg" alt="Image">   
+                          </div>
+                          <div class="flip-box-back" height="300px">
+                            <h2>Distributer</h2>
+                            <p>Contract system with farmers,  Run a series of tests and processing methods to determine parameters like acidity, taste, aroma etc, provide a quality certification and review of coffee beans to the farmer, and transfer the processed beans to retailers or coffee product manufacturers. </p>
+                          </div>
+                        </div>
+                    </div>
+                    <p>
+                      <div class="container d-flex justify-content-center">
+                        <div class="container d-flex justify-content-center">
+                          <button class="loginBtn" onclick="connectMetamask()">Distributer Login</button> 
+                        </div>
+                      </div>
+                    </p>
+                    
+                </div>
+                <div class="col-sm-4">
+                    <div class="flip-box">
+                        <div class="flip-box-inner">
+                          <div class="flip-box-front">
+                            <img src="../img/coffeePacks.jpg" class="img-responsive serviceImg" alt="Image">   
+                          </div>
+                          <div class="flip-box-back" height="300px">
+                            <h2>Retailer</h2>
+                            <p>Manufacturers of coffee based products, responsible for sales and marketing of the products, maintains direct contact with end users. Maintains a contracted network of distributors</p>
+                          </div>
+                        </div>
+                    </div>
+                    
+                    <p>
+                      <div class="container d-flex justify-content-center">
+                        <div class="container d-flex justify-content-center">
+                          <button class="loginBtn" onclick="connectMetamask()">Retailer Login</button> 
+                        </div>
+                      </div>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h4 class="modal-tit" id="exampleModalLabel">MetaMask <img src="../img/meta.png" class="metaLogo img-responsive"></h4>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body">
+                <ul style="list-style-type:circle;">
+                  <li>Open your browser (Google Chrome, Firefox, Opera, Brave, etc.)</li>
+                  <li>Go to the Metamask website: <a href="https://metamask.io/." target="_blank">https://metamask.io/.</a></li>
+                  <li>Click the "Get Chrome Extension" or "Get Firefox Extension" button, depending on your browser.</li>
+                  <li>Follow the prompts to install the extension. Once the extension is installed, you can see the Metamask icon in your browser toolbar.</li>
+                  <li>Click on the Metamask icon to open the Metamask popup.</li>
+                  <li>Follow the prompts to create a new wallet or import an existing one. You will need to create a password and save your seed phrase somewhere safe.</li>
+                  <li>Once your wallet is created, you can use Metamask to interact with DezChain.</li>
+                </ul>  
+              </div>
+            </div>
+          </div>
+        </div>
+
+          
+        <footer class=" text-center text-lg-start footer-style mainHeader" id="contact">
+            <div class="skill-section-title p-3">
+              <h4 class="p-2">Contact Us</h4>
+              <hr class="footer-line">
+            </div>
+            <div class="container p-4">
+              <div class="row">
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                  <h5 class="text-uppercase footer-name">DezChain</h5>
+                  <div class="text-center footer-text">
+                    © 2023 Copyright: Created by DezChain
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0 footer-text">
+                  Email :-
+                  <a href="sh03shruti@gmail.com" class="footerEmail">sh03shruti@gmail.com</a>
+                </div>
+              </div>
+            </div>
+        </footer>
+          
+        <script type="text/javascript" src="../js/main.js"></script>
+        <script type="text/javascript" src="../js/home.js"></script>
+        <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+        ></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"
+        ></script>
+
+    </body>
+</hmtl>

@@ -20,7 +20,7 @@ body {
 #page-wrapper {
     padding: 15px 15px;
     min-height: 600px;
-    background:#E5EBF2;
+    background:#f9f9f7;
    
 }
 #page-inner {
@@ -110,39 +110,40 @@ font-size: 40px;
 border-radius: 50px;
 
 }
-    .bg-color-green {
+.bg-color-green {
 background-color: #fff;
-color: #5cb85c;
+color: #0D626D;
 }
  .bg-color-blue {
 background-color: #fff;
-color: #4CB1CF
+color: #D0CB32 
 }
   .bg-color-red {
 background-color: #fff;
-color:#F0433D;
+color:#068979;
 }
   .bg-color-brown {
 background-color: #fff;
-color:#f0ad4e;
+color:#56C69E;
 }
+/* -------- */
 .back-footer-green {
-background-color: #5cb85c;
+background-color: #1e96a6;
 color:#fff;
 border-top: 0px solid #fff;
 }
  .back-footer-red {
-background-color: #F0433D;
+background-color: #068979 ;
 color:#fff;
 border-top: 0px solid #fff;
 }
  .back-footer-blue {
-background-color: #4CB1CF;
+background-color: #D0CB32 ;
 color:#fff;
 border-top: 0px solid #fff;
 }
  .back-footer-brown {
-background-color: #f0ad4e;
+background-color: #56C69E;
 color:#fff;
 border-top: 0px solid #fff;
 }
@@ -402,7 +403,7 @@ line-height: 1.428571429;
  
  @media(min-width:768px) {
      #page-wrapper{
-               margin: 0 0 0 260px;
+        margin: 0 0 0 260px;
         padding: 15px 30px;
         min-height: 1200px;
 		
@@ -448,4 +449,33 @@ font-size: 19px;
     background-color: rgb(220, 59, 20,0.5);
     padding:2px;
     text-align: center;
+}
+/* -----------custom scrollbar */
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+  
+  /* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+  
+/* ---------distributer form-------- */
+.quality{
+    padding-top: 40px;
+    font-size: 15px;
+    margin-left: 12px;
+    font-weight: 700;
 }
