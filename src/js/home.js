@@ -296,12 +296,31 @@ const CONSUMER_ABI = [
 ];
 
 const SUPPLYCHAIN_CONTRACT_ADDRESS =
-  "0x31462439c29e67dab494726d0d714754003e013b";
+  "0x4a2fd11fc990c11e88d597c5751caf127a72810d";
 const SUPPLYCHAIN_ABI = [
   {
     inputs: [],
     stateMutability: "payable",
     type: "constructor",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "Deposit",
+    type: "event",
   },
   {
     anonymous: false,
@@ -513,6 +532,25 @@ const SUPPLYCHAIN_ABI = [
         name: "account",
         type: "address",
       },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "Withdraw",
+    type: "event",
+  },
+  {
+    anonymous: false,
+    inputs: [
+      {
+        indexed: true,
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
     ],
     name: "consumerAdded",
     type: "event",
@@ -593,6 +631,24 @@ const SUPPLYCHAIN_ABI = [
     name: "buyItem",
     outputs: [],
     stateMutability: "payable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "deposit",
+    outputs: [],
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -703,6 +759,25 @@ const SUPPLYCHAIN_ABI = [
         internalType: "address",
         name: "consumerID",
         type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+    ],
+    name: "getBalance",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -991,6 +1066,24 @@ const SUPPLYCHAIN_ABI = [
     stateMutability: "nonpayable",
     type: "function",
   },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+      {
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
+    ],
+    name: "withdraw",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
 ];
 
 function googleTranslateElementInit() {
@@ -1064,16 +1157,16 @@ const distributerLogin = async (account) => {
   return data;
 };
 
-// -------------------------------------------TESTING------------------------------------------------
+// // -------------------------------------------TESTING------------------------------------------------
 // const distributer = async () => {
-//   const Address = DISTRIBUTOR_CONTRACT_ADDRESS;
+//   const Address = SUPPLYCHAIN_CONTRACT_ADDRESS;
 //   window.web3 = await new Web3(window.ethereum);
 //   window.contract = await new window.web3.eth.Contract(
-//     DISTRIBUTOR_ABI,
+//     SUPPLYCHAIN_ABI,
 //     Address
 //   );
 //   const data = await window.contract.methods
-//     .isDistributor("0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515")
+//     .isDistributor("0x44D2431899bDe95Cc922703340f2EA9D7086d2C7")
 //     .call();
 //   console.log("dis", data);
 // };
@@ -1081,11 +1174,14 @@ const distributerLogin = async (account) => {
 // distributer();
 
 // const farmer = async () => {
-//   const Address = FARMER_CONTRACT_ADDRESS;
+//   const Address = SUPPLYCHAIN_CONTRACT_ADDRESS;
 //   window.web3 = await new Web3(window.ethereum);
-//   window.contract = await new window.web3.eth.Contract(FARMER_ABI, Address);
+//   window.contract = await new window.web3.eth.Contract(
+//     SUPPLYCHAIN_ABI,
+//     Address
+//   );
 //   const data = await window.contract.methods
-//     .isFarmer("0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515")
+//     .isFarmer("0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc")
 //     .call();
 //   console.log(data);
 // };
@@ -1093,9 +1189,12 @@ const distributerLogin = async (account) => {
 // farmer();
 
 // const retail = async () => {
-//   const Address = RETAILER_CONTRACT_ADDRESS;
-//   window.web3 = await new Web3(window.ethereum);0x44D2431899bDe95Cc922703340f2EA9D7086d2C7
-//   window.contract = await new window.web3.eth.Contract(RETAILER_ABI, Address);
+//   const Address = SUPPLYCHAIN_CONTRACT_ADDRESS;
+//   window.web3 = await new Web3(window.ethereum);
+//   window.contract = await new window.web3.eth.Contract(
+//     SUPPLYCHAIN_ABI,
+//     Address
+//   );
 //   const data = await window.contract.methods
 //     .isRetailer("0x44D2431899bDe95Cc922703340f2EA9D7086d2C7")
 //     .call();
@@ -1104,6 +1203,20 @@ const distributerLogin = async (account) => {
 
 // retail();
 
+// const getBal = async () => {
+//   const Address = SUPPLYCHAIN_CONTRACT_ADDRESS;
+//   window.web3 = await new Web3(window.ethereum);
+//   window.contract = await new window.web3.eth.Contract(
+//     SUPPLYCHAIN_ABI,
+//     Address
+//   );
+//   const data = await window.contract.methods
+//     .getBalance("0x44D2431899bDe95Cc922703340f2EA9D7086d2C7")
+//     .call();
+//   console.log("bal", data);
+// };
+
+// getBal();
 // account (admin)= 0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515
 // tiwari (farmer)= 0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6
 // distri = 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc

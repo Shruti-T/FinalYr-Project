@@ -2,6 +2,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const axios = require("axios");
+const cors = require("cors");
 // import fetch from "node-fetch";
 
 const Router = require("./router.js");
@@ -15,6 +16,8 @@ if (process.env.NODE_ENV === "development") {
 //serving static files
 app.use(express.static(`${__dirname}/src/pages`));
 
+app.use(cors());
+app.options("*", cors());
 //test middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();

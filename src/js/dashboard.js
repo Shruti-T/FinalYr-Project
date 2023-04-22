@@ -1,5 +1,3 @@
-import axios from "axios";
-
 async function onInit() {
   let wallet = document.getElementById("profileWalletId").innerHTML;
   await window.ethereum.enable();
@@ -96,41 +94,25 @@ document.getElementById("qualityCheckBtn").addEventListener("click", () => {
   }
 });
 
-// const mlurl = `https://python-public-api-production.up.railway.app/?my_dict={%22aroma%22:8.67,%22Flavor%22:8.83,%22Aftertaste%22:8.6,%22Acidity%22:8.75,%22Body%22:8.5,%22Balance%22:8.42,%22Uniformity%22:10.0,%22Clean.Cup%22:10.0,%22Sweetness%22:10.0,%22Cupper.Points%22:8.75,%22Moisture%22:0.12,%22Quakers%22:0.0,%22Category.One.Defects%22:0.0,%22Category.Two.Defects%22:0,%22altitude_mean_meters%22:2075.0}`;
-// fetch(mlurl, { mode: "no-cors" })
-//   // .then((response) => response.json())
-//   .then((data) => {
-//     console.log("---------sssssssssss------");
-//     console.log(data);
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
-// fetch("/x", {
-//   method: "GET", // change the method to GET
-//   headers: {
-//     "Content-Type": "application/json",
-//   },
-// })
-//   .then((response) => response.json()) // parse the response as JSON
-//   .then((data) => {
-//     console.log(data); // do something with the response data
-//   })
-//   .catch((error) => {
-//     console.error(error);
-//   });
+function coffee() {
+  const currentDomain = window.location.hostname;
+  const currentProtocol = window.location.protocol;
+  const portNumber = 8000; // Replace with your own port number
+  const route = "/x"; // Replace with your own API route
 
-// async function caal(s) {
-//   try {
-//     const res = await axios({
-//       method: "GET",
-//       url: "/x",
-//     });
-//     if (res) {
-//       console.log(res.quality);
-//     }
-//   } catch (err) {
-//     showAlert("error", "Error logging out! Try again.");
-//   }
-// }
-// caal();
+  fetch(`${currentProtocol}//${currentDomain}:${portNumber}${route}`, {
+    method: "GET", // change the method to GET
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json()) // parse the response as JSON
+    .then((data) => {
+      console.log(data.quality.quality); // do something with the response data
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+coffee();
