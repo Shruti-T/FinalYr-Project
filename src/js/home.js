@@ -1,4 +1,4 @@
-const FARMER_CONTRACT_ADDRESS = "0x3db847400071a10ffacb7d75ce150cbadab7082c";
+const FARMER_CONTRACT_ADDRESS = "0x457d47c99af82b79f46d6d98cc5fcdb50b95facf";
 const FARMER_ABI = [
   {
     inputs: [],
@@ -71,6 +71,7 @@ const FARMER_ABI = [
     type: "function",
   },
 ];
+
 const DISTRIBUTOR_CONTRACT_ADDRESS =
   "0x39090c4b880fb8db1f93e0ce9dfddf9c93e2d477";
 const DISTRIBUTOR_ABI = [
@@ -1072,7 +1073,7 @@ const distributerLogin = async (account) => {
 //     Address
 //   );
 //   const data = await window.contract.methods
-//     .isDistributor("0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc")
+//     .isDistributor("0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515")
 //     .call();
 //   console.log("dis", data);
 // };
@@ -1084,7 +1085,7 @@ const distributerLogin = async (account) => {
 //   window.web3 = await new Web3(window.ethereum);
 //   window.contract = await new window.web3.eth.Contract(FARMER_ABI, Address);
 //   const data = await window.contract.methods
-//     .isFarmer("0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc")
+//     .isFarmer("0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515")
 //     .call();
 //   console.log(data);
 // };
@@ -1093,7 +1094,7 @@ const distributerLogin = async (account) => {
 
 // const retail = async () => {
 //   const Address = RETAILER_CONTRACT_ADDRESS;
-//   window.web3 = await new Web3(window.ethereum);
+//   window.web3 = await new Web3(window.ethereum);0x44D2431899bDe95Cc922703340f2EA9D7086d2C7
 //   window.contract = await new window.web3.eth.Contract(RETAILER_ABI, Address);
 //   const data = await window.contract.methods
 //     .isRetailer("0x44D2431899bDe95Cc922703340f2EA9D7086d2C7")
@@ -1105,6 +1106,5 @@ const distributerLogin = async (account) => {
 
 // account (admin)= 0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515
 // tiwari (farmer)= 0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6
-//distri = 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
+// distri = 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
 // retail= 0x44D2431899bDe95Cc922703340f2EA9D7086d2C7
-
