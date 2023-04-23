@@ -1177,7 +1177,7 @@ async function retailerLogin(account) {
 
 // account (admin)= 0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515
 // tiwari (farmer)= 0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6
-// distri = 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
+// distri = 0xe4E9b198CeE15C379EC9E02abea4Dfdf4C570551
 // retail= 0x44D2431899bDe95Cc922703340f2EA9D7086d2C7
 
 // // -------------------------------------------TESTING------------------------------------------------
@@ -1204,7 +1204,7 @@ async function retailerLogin(account) {
 //     Address
 //   );
 //   const data = await window.contract.methods
-//     .isFarmer("0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc")
+//     .isFarmer("0xe4E9b198CeE15C379EC9E02abea4Dfdf4C570551")
 //     .call();
 //   console.log(data);
 // };
@@ -1242,5 +1242,5 @@ async function retailerLogin(account) {
 // getBal();
 // account (admin)= 0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515
 // tiwari (farmer)= 0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6
-// distri = 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
+// distri = 0xe4E9b198CeE15C379EC9E02abea4Dfdf4C570551
 // retail= 0x44D2431899bDe95Cc922703340f2EA9D7086d2C7

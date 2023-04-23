@@ -3,6 +3,7 @@ const express = require("express");
 const morgan = require("morgan");
 const axios = require("axios");
 const cors = require("cors");
+const marketController = require("./controller/marketController");
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
+
+app.use("/market", marketController.getAllMarket);
 
 app.use("/", async (req, res) => {
   let quality = 0;

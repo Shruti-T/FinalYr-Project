@@ -148,60 +148,36 @@
                                                 <tr>
                                                     <th>Sr.No.</th>
                                                     <th>Name</th>
-                                                    <th>Unit bags</th>
+                                                    <th>Unit bags(Kg)</th>
                                                     <th>Price (eth)</th>
+                                                    <th>Details</th>
                                                     <th>Status</th>
-                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <td>1</td>
-                                                    <td>John</td>
+                                                    <td id="td1">0xe4E9b198CeE15C379EC9E02abea4Dfdf4C570551</td>
                                                     <td>30</td>
-                                                    <td>0.001</td>
-                                                    <td><div class="forSale">For Sale</div></td>
-                                                    <td><a href="#">Buy</a></td>
+                                                    <td id="eth1">0.01</td>
+                                                    <td><a href="#">Modal</a></td>
+                                                    <td><div class="forSale"><button type="click" class="forSale moneyTrans">For Sale</button></div></td>
                                                 </tr>
                                                 <tr>
                                                     <td>2</td>
-                                                    <td>Anna</td>
+                                                    <td id="td2">0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6</td>
                                                     <td>50</td>
-                                                    <td>0.005</td>
-                                                    <td><div class="soldBatch">Sold</div></td>
-                                                    <td><a href="#" class="soldAction">Buy</a></td>
+                                                    <td id="eth2">0.005</td>
+                                                    <td><a href="#">Modal</a></td>
+                                                    <td><div class="soldBatch"> <button type="click" class="soldBatch moneyTrans">Sold</button></div></td>      
                                                 </tr>
                                                 <tr>
                                                     <td>3</td>
-                                                    <td>Mathew</td>
+                                                    <td id="td3">0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6</td>
                                                     <td>50</td>
-                                                    <td>0.003</td>
-                                                    <td><div class="forSale">For Sale</div></td>
-                                                    <td><a href="#">Buy</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4</td>
-                                                    <td>Ram</td>
-                                                    <td>20</td>
-                                                    <td>0.003</td>
-                                                    <td><div class="forSale">For Sale</div></td>
-                                                    <td><a href="#">Buy</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5</td>
-                                                    <td>Tony</td>
-                                                    <td>60</td>
-                                                    <td>0.005</td>
-                                                    <td><div class="soldBatch">Sold</div></td>
-                                                    <td><a href="#" class="soldAction">Buy</a></td>
-                                                </tr>
-                                                <tr>
-                                                    <td>6</td>
-                                                    <td>Austin</td>
-                                                    <td>80</td>
-                                                    <td>0.01</td>
-                                                    <td><div class="forSale">For Sale</div></td>
-                                                    <td><a href="#">Buy</a></td>
+                                                    <td id="eth3">0.02</td>
+                                                    <td><a data-toggle="modal" data-target="#examModal">Modal</a></td>
+                                                    <td><div class="forSale"> <button type="click" class="forSale moneyTrans">For Sale</button></div></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -209,6 +185,27 @@
                                 </div>
                             </div>
                         </div> 
+                        <!-- <button type="click" id="money">xxxx</button> -->
+                        <div class="modal fade" id="examModal" tabindex="-1" aria-labelledby="examModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-head">
+                                  <h2 class="modal-tit pb-4" id="examModalLabel">Details</h2>
+                                  <br>
+                                  <!-- <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button> -->
+                                </div>
+                                <div class="modalContent p-5">
+                                    <ul class="mt-5">
+                                        <li>Type Of Cofee=Arabica</li>
+                                        <li>Harvest Date= 25/1/2023</li>
+                                        <li>Fertilizer=Nitrogen</li>
+                                        <li>Cost=0.02</li>
+                                        <li>Quantity=50</li>
+                                    </ul>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                         <div class="row">

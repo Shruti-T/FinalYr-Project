@@ -179,6 +179,9 @@
 .modal-body{
     background-image: url('../img/modalBody.webp');
 }
+.modalContent{
+    background-image: url('../img/bg.jpg');
+}
 .stepsModal:hover{
     cursor: pointer;
     color:#795d43

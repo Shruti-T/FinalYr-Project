@@ -115,41 +115,79 @@ async function fetchData(data) {
   return ans;
 }
 
-document.getElementById("qualityCheckBtn").addEventListener("click", () => {
-  param = {};
-  for (let i = 1; i < 16; i++) {
-    let ele = document.getElementById(`param${i}`);
-    let val = parseFloat(ele.value);
-    let key = ele.name;
-    param[key] = val;
+if (document.getElementById("qualityCheckBtn")) {
+  document.getElementById("qualityCheckBtn").addEventListener("click", () => {
+    param = {};
+    for (let i = 1; i < 16; i++) {
+      let ele = document.getElementById(`param${i}`);
+      let val = parseFloat(ele.value);
+      let key = ele.name;
+      param[key] = val;
+    }
+    fetchData(param)
+      .then((data) => {
+        // console.log("sssysysys", data.quality.quality);
+        let qualityEstimated = data.quality.quality;
+        // console.log("hehre");
+        document.getElementById("qualCard").style.display = "block";
+        let image = document.getElementById("qualImg");
+        let heading = document.getElementById("qualType");
+        let info = document.getElementById("qualUsage");
+        if (qualityEstimated >= 90) {
+          image.src = "../img/LuxQual.png";
+          heading.innerHTML = `Luxury Quality(${qualityEstimated})`;
+          info.innerHTML =
+            "Exceptionally rare specialty coffee , which is considered outstanding and has the boldest taste notes, hence is also considered a luxury coffee.";
+        } else if (qualityEstimated < 90 && qualityEstimated >= 80) {
+          image.src = "../img/goodQual.png";
+          heading.innerHTML = `Good Quality(${qualityEstimated})`;
+          info.innerHTML =
+            "Standard specialty coffee, more commercially available and comparatively cheaper.";
+        } else {
+          image.src = "../img/MediocQaul.png";
+          heading.innerHTML = `Mediocre Quality(${qualityEstimated})`;
+          info.innerHTML =
+            "Non specialty coffee, often categorized as commercial coffee or the instant coffee which is available in the markets.";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
+}
+async function x(toAccount, ammount) {
+  // Check if MetaMask is installed
+  if (typeof window.ethereum !== "undefined") {
+    console.log("MetaMask is installed!");
   }
-  fetchData(param)
-    .then((data) => {
-      // console.log("sssysysys", data.quality.quality);
-      let qualityEstimated = data.quality.quality;
-      // console.log("hehre");
-      document.getElementById("qualCard").style.display = "block";
-      let image = document.getElementById("qualImg");
-      let heading = document.getElementById("qualType");
-      let info = document.getElementById("qualUsage");
-      if (qualityEstimated >= 90) {
-        image.src = "../img/LuxQual.png";
-        heading.innerHTML = `Luxury Quality(${qualityEstimated})`;
-        info.innerHTML =
-          "Exceptionally rare specialty coffee , which is considered outstanding and has the boldest taste notes, hence is also considered a luxury coffee.";
-      } else if (qualityEstimated < 90 && qualityEstimated >= 80) {
-        image.src = "../img/goodQual.png";
-        heading.innerHTML = `Good Quality(${qualityEstimated})`;
-        info.innerHTML =
-          "Standard specialty coffee, more commercially available and comparatively cheaper.";
-      } else {
-        image.src = "../img/MediocQaul.png";
-        heading.innerHTML = `Mediocre Quality(${qualityEstimated})`;
-        info.innerHTML =
-          "Non specialty coffee, often categorized as commercial coffee or the instant coffee which is available in the markets.";
-      }
-    })
-    .catch((error) => {
-      console.error("Error:", error);
+
+  // Request access to the user's accounts
+  window.ethereum.request({ method: "eth_requestAccounts" });
+
+  // Send a transaction using the user's account
+  window.ethereum.request({
+    method: "eth_sendTransaction",
+    params: [
+      {
+        from: window.ethereum.selectedAddress,
+        to: toAccount,
+        value:
+          "0x" +
+          Web3.utils.toBN(Web3.utils.toWei(ammount, "ether")).toString(16),
+      },
+    ],
+  });
+}
+
+if (document.querySelectorAll(".moneyTrans")) {
+  const elements = document.querySelectorAll(".moneyTrans");
+
+  elements.forEach((element, index) => {
+    element.addEventListener("click", () => {
+      // console.log(index);
+      let toAccount = document.getElementById(`td${index + 1}`).innerHTML;
+      let ammount = document.getElementById(`eth${index + 1}`).innerHTML;
+      x(toAccount, ammount);
     });
-});
+  });
+}
