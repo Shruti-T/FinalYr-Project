@@ -70,49 +70,63 @@ fetch(url)
 if (window.location.pathname == "/src/pages/distributer.html") {
   document.getElementById("qualCard").style.display = "none";
 }
-document.getElementById("qualityCheckBtn").addEventListener("click", () => {
-  let qualityEstimated = 50.22;
-  document.getElementById("qualCard").style.display = "block";
-  let image = document.getElementById("qualImg");
-  let heading = document.getElementById("qualType");
-  let info = document.getElementById("qualUsage");
-  if (qualityEstimated >= 90) {
-    image.src = "../img/LuxQual.png";
-    heading.innerHTML = "Luxury Quality";
-    info.innerHTML =
-      "Exceptionally rare specialty coffee , which is considered outstanding and has the boldest taste notes, hence is also considered a luxury coffee.";
-  } else if (qualityEstimated < 90 && qualityEstimated >= 80) {
-    image.src = "../img/goodQual.png";
-    heading.innerHTML = "Good Quality";
-    info.innerHTML =
-      "Standard specialty coffee, more commercially available and comparatively cheaper.";
-  } else {
-    image.src = "../img/MediocQaul.png";
-    heading.innerHTML = "Mediocre Quality";
-    info.innerHTML =
-      "Non specialty coffee, often categorized as commercial coffee or the instant coffee which is available in the markets.";
-  }
-});
 
-function coffee() {
+async function fetchData(data) {
   const currentDomain = window.location.hostname;
   const currentProtocol = window.location.protocol;
-  const portNumber = 8000; // Replace with your own port number
-  const route = "/x"; // Replace with your own API route
+  const portNumber = 8000;
+  const route = "/";
 
-  fetch(`${currentProtocol}//${currentDomain}:${portNumber}${route}`, {
-    method: "GET", // change the method to GET
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json()) // parse the response as JSON
-    .then((data) => {
-      console.log(data.quality.quality); // do something with the response data
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  const queryParams = new URLSearchParams({ data: JSON.stringify(data) });
+
+  const response = await fetch(
+    `${currentProtocol}//${currentDomain}:${portNumber}${route}?${queryParams}`,
+    {
+      method: "GET", // change the method to GET
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  const ans = await response.json();
+  return ans;
 }
 
-coffee();
+document.getElementById("qualityCheckBtn").addEventListener("click", () => {
+  param = {};
+  for (let i = 1; i < 16; i++) {
+    let ele = document.getElementById(`param${i}`);
+    let val = parseFloat(ele.value);
+    let key = ele.name;
+    param[key] = val;
+  }
+  fetchData(param)
+    .then((data) => {
+      console.log("sssysysys", data.quality.quality);
+      let qualityEstimated = data.quality.quality;
+      console.log("hehre");
+      document.getElementById("qualCard").style.display = "block";
+      let image = document.getElementById("qualImg");
+      let heading = document.getElementById("qualType");
+      let info = document.getElementById("qualUsage");
+      if (qualityEstimated >= 90) {
+        image.src = "../img/LuxQual.png";
+        heading.innerHTML = `Luxury Quality(${qualityEstimated})`;
+        info.innerHTML =
+          "Exceptionally rare specialty coffee , which is considered outstanding and has the boldest taste notes, hence is also considered a luxury coffee.";
+      } else if (qualityEstimated < 90 && qualityEstimated >= 80) {
+        image.src = "../img/goodQual.png";
+        heading.innerHTML = `Good Quality(${qualityEstimated})`;
+        info.innerHTML =
+          "Standard specialty coffee, more commercially available and comparatively cheaper.";
+      } else {
+        image.src = "../img/MediocQaul.png";
+        heading.innerHTML = `Mediocre Quality(${qualityEstimated})`;
+        info.innerHTML =
+          "Non specialty coffee, often categorized as commercial coffee or the instant coffee which is available in the markets.";
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
