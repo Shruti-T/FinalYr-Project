@@ -22,7 +22,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/market", marketController.getAllMarket);
+// app.use("/market", marketController.getAllMarket);
 
 app.use("/", async (req, res) => {
   let quality = 0;
