@@ -1101,61 +1101,84 @@ let account;
 const connectMetamask = async () => {
   if (window.ethereum !== "undefined") {
     const accounts = await ethereum.request({ method: "eth_requestAccounts" });
-    // console.log(accounts);
     account = accounts[0];
-    const data1 = farmerLogin(account);
-    const data2 = distributerLogin(account);
-    if (data2) {
-      window.location.href = `/src/pages/distributer.html`;
-    } else if (data1) {
-      window.location.href = `/src/pages/farmer.html`;
-    } else {
-      window.location.href = `/src/pages/main.html`;
+    // console.log(account, "before");
+
+    farmerLogin(account)
+      .then((data) => {
+        if (data) {
+          window.location.href = `/src/pages/farmer.html`;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    distributerLogin(account)
+      .then((data) => {
+        if (data) {
+          window.location.href = `/src/pages/distributer.html`;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    retailerLogin(account)
+      .then((data) => {
+        if (data) {
+          window.location.href = `/src/pages/retailer.html`;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    if (window.location.pathname != "/src/pages/main.html") {
+      document.getElementById("profileWalletId").innerHTML = accounts[0];
     }
   }
 };
 
-//2- connect to farmer smart contract
-const connectContract = async () => {
-  const Address = FARMER_CONTRACT_ADDRESS;
-  window.web3 = await new Web3(window.ethereum);
-  window.contract = await new window.web3.eth.Contract(FARMER_ABI, Address);
-  document.getElementById("contractArea").innerHTML =
-    "connected to smart contract";
-};
-
-//2- connect to distributer smart contract
-const connectContract2 = async () => {
-  const Address = DISTRIBUTOR_CONTRACT_ADDRESS;
+//3) read value from smart contract
+async function farmerLogin(account) {
+  const Address = SUPPLYCHAIN_CONTRACT_ADDRESS;
   window.web3 = await new Web3(window.ethereum);
   window.contract = await new window.web3.eth.Contract(
-    DISTRIBUTOR_ABI,
+    SUPPLYCHAIN_ABI,
     Address
   );
-  document.getElementById("contractArea").innerHTML =
-    "connected to smart contract2";
-};
-
-//3) read value from smart contract
-const farmerLogin = async (account) => {
-  const Address = FARMER_CONTRACT_ADDRESS;
-  window.web3 = await new Web3(window.ethereum);
-  window.contract = await new window.web3.eth.Contract(FARMER_ABI, Address);
   const data = await window.contract.methods.isFarmer(account).call();
   return data;
-};
+}
 
 //3) read value from smart contract 2
-const distributerLogin = async (account) => {
-  const Address = DISTRIBUTOR_CONTRACT_ADDRESS;
+async function distributerLogin(account) {
+  const Address = SUPPLYCHAIN_CONTRACT_ADDRESS;
   window.web3 = await new Web3(window.ethereum);
   window.contract = await new window.web3.eth.Contract(
-    DISTRIBUTOR_ABI,
+    SUPPLYCHAIN_ABI,
     Address
   );
   const data = await window.contract.methods.isDistributor(account).call();
   return data;
-};
+}
+
+async function retailerLogin(account) {
+  const Address = SUPPLYCHAIN_CONTRACT_ADDRESS;
+  window.web3 = await new Web3(window.ethereum);
+  window.contract = await new window.web3.eth.Contract(
+    SUPPLYCHAIN_ABI,
+    Address
+  );
+  const data = await window.contract.methods.isRetailer(account).call();
+  return data;
+}
+
+// account (admin)= 0xEb9C140356e1Cb4b3385D6Af3e5e1fddBa769515
+// tiwari (farmer)= 0xFd5CBc6d9a03d36B350c9b7634093e30856c3Ca6
+// distri = 0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc
+// retail= 0x44D2431899bDe95Cc922703340f2EA9D7086d2C7
 
 // // -------------------------------------------TESTING------------------------------------------------
 // const distributer = async () => {

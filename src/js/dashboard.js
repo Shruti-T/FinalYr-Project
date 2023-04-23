@@ -10,21 +10,44 @@ async function onInit() {
   window.ethereum.on("accountsChanged", function (accounts) {
     // Time to reload your interface with accounts[0]!
     const account = accounts[0];
-    const data1 = farmerLogin(account);
-    const data2 = distributerLogin(account);
-    if (data2) {
-      window.location.href = `/src/pages/distributer.html`;
-    } else if (data1) {
-      window.location.href = `/src/pages/farmer.html`;
-    } else {
-      window.location.href = `/src/pages/main.html`;
+    farmerLogin(account)
+      .then((data) => {
+        if (data) {
+          window.location.href = `/src/pages/farmer.html`;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    distributerLogin(account)
+      .then((data) => {
+        if (data) {
+          window.location.href = `/src/pages/distributer.html`;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    retailerLogin(account)
+      .then((data) => {
+        if (data) {
+          window.location.href = `/src/pages/retailer.html`;
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+    if (window.location.pathname != "/src/pages/main.html") {
+      document.getElementById("profileWalletId").innerHTML = accounts[0];
     }
-    // console.log(accounts[0]);
-    document.getElementById("profileWalletId").innerHTML = accounts[0];
   });
 }
-
-onInit();
+window.onload = function () {
+  onInit();
+};
 
 // if (!ethereum.isConnected()) {
 //     document.body.innerHTML =
@@ -102,9 +125,9 @@ document.getElementById("qualityCheckBtn").addEventListener("click", () => {
   }
   fetchData(param)
     .then((data) => {
-      console.log("sssysysys", data.quality.quality);
+      // console.log("sssysysys", data.quality.quality);
       let qualityEstimated = data.quality.quality;
-      console.log("hehre");
+      // console.log("hehre");
       document.getElementById("qualCard").style.display = "block";
       let image = document.getElementById("qualImg");
       let heading = document.getElementById("qualType");
