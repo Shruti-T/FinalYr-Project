@@ -177,6 +177,11 @@ async function x(toAccount, ammount) {
       },
     ],
   });
+  document.getElementById("forsale1").classList.remove("forSale");
+  document.getElementById("forsale2").classList.remove("forSale");
+  document.getElementById("forsale2").innerHTML = "Sold";
+  document.getElementById("forsale1").classList.add("soldBatch");
+  document.getElementById("forsale2").classList.add("soldBatch");
 }
 
 if (document.querySelectorAll(".moneyTrans")) {
