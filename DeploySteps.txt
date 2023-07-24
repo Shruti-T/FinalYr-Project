@@ -1,12 +1,12 @@
 
 // --------------To deploy and start steps--------
-// For ML
+// ---------For ML
 // make sure url is same as the commented one in its code... it may take time to reply.. but wait
 
-// for frontend... fot it to work..
+// ---------for frontend... fot it to work..
 // open with live server
 
-// for quality check api
+// ---------for quality check api
 // since its created with nodejs.. you need to activate localhost...
 // so run "npm run start" in here
 // the port number in which app is running... the same port number should be in "dashboard.js" file... 
