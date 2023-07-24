@@ -1,4 +1,4 @@
-# FinalYr-Project
+# FinalYr-Project💻👨‍🌾
 Blockchain technology is a distributed ledger system that allows multiple parties to record and verify transactions without the need for intermediaries. In supply chain management, blockchain can be used to increase transparency, traceability, and efficiency of the supply chain process.
 
 This project aims to solve the problems that arise in the Traditional Supply Chain system and solve it with the uprising Blockchain Architecture. 
