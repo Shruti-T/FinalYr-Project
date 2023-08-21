@@ -353,9 +353,15 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
 
   // Account Balance
   function getBalance(address account) public view returns (uint256) {
-    SupplyChain.getBalance(msg.sender);
+    SupplyChain.getBalance(account);
     return account.balance;
   }
+
+  function transfer(address payable recipient, uint256 amount) public payable { 
+    require(msg.sender.balance >= amount, "Insufficient balance");
+     recipient.transfer(amount);
+  }
+ 
 
   function deposit(address account, uint256 amount) public {
         // Check that the amount is greater than zero
