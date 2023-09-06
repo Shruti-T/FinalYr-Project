@@ -1,2 +1,2 @@
-# FinalYr-Project
-blockchain enabled supply chain system.
+# DezChain
+Blockchain-enabled Supply Chain System.
