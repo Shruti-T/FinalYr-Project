@@ -97,7 +97,7 @@ if (window.location.pathname == "/src/pages/distributer.html") {
 async function fetchData(data) {
   const currentDomain = window.location.hostname;
   const currentProtocol = window.location.protocol;
-  const portNumber = 8000;
+  const portNumber = `8000;`
   const route = "/";
 
   const queryParams = new URLSearchParams({ data: JSON.stringify(data) });
