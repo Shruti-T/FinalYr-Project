@@ -26,7 +26,9 @@ app.use((req, res, next) => {
 
 app.use("/", async (req, res) => {
   let quality = 0;
+  console.log("line 29 app.js", req.query.data);
   my_dict = req.query.data;
+  console.log("line 31 app.js", my_dict);
 
   await axios
     .get(

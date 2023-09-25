@@ -97,9 +97,9 @@ if (window.location.pathname == "/src/pages/distributer.html") {
 async function fetchData(data) {
   const currentDomain = window.location.hostname;
   const currentProtocol = window.location.protocol;
-  const portNumber = `8000;`
+  const portNumber = `8000`;
   const route = "/";
-
+  console.log("line 102", portNumber);
   const queryParams = new URLSearchParams({ data: JSON.stringify(data) });
 
   const response = await fetch(
@@ -111,6 +111,7 @@ async function fetchData(data) {
       },
     }
   );
+  console.log("line 114", response);
   const ans = await response.json();
   return ans;
 }
@@ -126,7 +127,7 @@ if (document.getElementById("qualityCheckBtn")) {
     }
     fetchData(param)
       .then((data) => {
-        // console.log("sssysysys", data.quality.quality);
+        console.log("line 130", data.quality.quality);
         let qualityEstimated = data.quality.quality;
         // console.log("hehre");
         document.getElementById("qualCard").style.display = "block";
